@@ -8,6 +8,8 @@ public class PistolShoot : MonoBehaviour
 
     public GameObject effect;
     public AudioClip BulletSound;
+    public AudioClip clickSound;
+    public AudioClip reloadSound;
     public GameObject BulletHole;
 
 
@@ -43,8 +45,14 @@ public class PistolShoot : MonoBehaviour
 
     public void Reload()
     {
-        GetComponent<Animator>().SetTrigger("Reload");
-        bullets = maxBullets;
+        if (!GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Reload"))
+        {
+            GetComponent<Animator>().SetTrigger("Reload");
+            bullets = maxBullets;
+            SoundSysyem c = new SoundSysyem();
+            c.PlaySound2D(reloadSound, transform.position);
+        }
+            
 
     }
 
@@ -54,7 +62,8 @@ public class PistolShoot : MonoBehaviour
             return false;
             if (bullets > 0)
             return true;
-
+        SoundSysyem c = new SoundSysyem();
+        c.PlaySound2D(clickSound, transform.position);
         return false;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -54,6 +55,14 @@ public class PlayerMove : MonoBehaviour
     public WeaponSwitch weaponSwitch;
 
     public GameObject bulletEffect;
+
+
+
+    public Vector3 punch = new Vector3(0, 0);
+    [Space]
+    [Space]
+    [Header("Debug")]
+    public GameObject enemy;
     void Start()
     {
         
@@ -166,16 +175,18 @@ public class PlayerMove : MonoBehaviour
 
 
                    Physics.Raycast(transformCamera.position, transformCamera.forward, out hit, 1231f);
-                   print(enemyMask.value);
 
-                    if (hit.transform.gameObject.layer == enemyMask)
+
+                    if (hit.transform.gameObject.layer == Mathf.Log(enemyMask,2))
                     {
                         hit.transform.GetComponent<EnemyController>().MakeDamage(hitDamage);
                         weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, false);
                     }
-                   else if (hit.transform.gameObject.layer == playerMask)
+                   else if (hit.transform.gameObject.layer == Mathf.Log(playerMask,2))
                    {
-                       weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, false);
+                        Physics.Raycast(transformCamera.position, transformCamera.forward, out hit, 1231f,groundMask);
+                        weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, true);
+
                    }
                    else
                    {
@@ -238,11 +249,28 @@ public class PlayerMove : MonoBehaviour
           
 
         }
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButton("Fire2"))
         {
-            animator.Play("Lhit");
-        }
+            RaycastHit hit;
+            Physics.Raycast(transformCamera.position, transformCamera.forward, out hit, 1231f);
+            Instantiate(enemy, hit.point, Quaternion.identity);
 
+           // animator.Play("Lhit");
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            foreach(var a in GameObject.FindGameObjectsWithTag("Enemy"))
+            {
+                Destroy(a);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            foreach (var a in GameObject.FindGameObjectsWithTag("Enemy"))
+            {
+                a.GetComponent<Rigidbody>().AddForce(new Vector3(0f, 50, 0f));
+            }
+        }
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
@@ -259,7 +287,7 @@ public class PlayerMove : MonoBehaviour
         hp -= damage;
     }
 
-    public Vector3 punch = new Vector3(0,0);
+   
 
     public void Kick(Vector3 velocity)
     {

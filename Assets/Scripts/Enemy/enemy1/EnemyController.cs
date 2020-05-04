@@ -59,7 +59,7 @@ public class EnemyController : MonoBehaviour
         int soundNumber =  Random.Range(0, hitAudioClips.Length);
 
         SoundSysyem sounds = new SoundSysyem();
-        print(soundNumber);
+
         sounds.PlaySound(hitAudioClips[soundNumber],transform.position);
 
         agent.enabled = false;

@@ -23,4 +23,13 @@ public class SoundSysyem : MonoBehaviour
 
 
     }
+
+    public void PlaySound2D(AudioClip sound, Vector3 position)
+    {
+        GameObject soundObject = new GameObject("SoundObject");
+        soundObject.transform.position = position;
+        soundObject.AddComponent<AudioSource>().clip = sound;
+        soundObject.GetComponent<AudioSource>().Play();
+        soundObject.AddComponent<AutoRemove>();
+    }
 }
