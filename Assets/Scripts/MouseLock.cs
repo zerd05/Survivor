@@ -6,7 +6,7 @@ public class MouseLock : MonoBehaviour
 {
 
     public float sensa = 100f;
-    // Start is called before the first frame update
+
 
     public Transform playerBody;
 
@@ -16,7 +16,7 @@ public class MouseLock : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         float mouseX = Input.GetAxis("Mouse X") * sensa * Time.deltaTime;

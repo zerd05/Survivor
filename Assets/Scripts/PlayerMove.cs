@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
@@ -28,6 +29,7 @@ public class PlayerMove : MonoBehaviour
     public Transform transformCamera;        //Камера персонажа
     public LayerMask woodMask;               //Слой дерева
     public LayerMask enemyMask;
+    public LayerMask playerMask;
                                              
     public int hitDamage = 50;               //Урон от удара
 
@@ -40,6 +42,7 @@ public class PlayerMove : MonoBehaviour
     public int hp = 100;                     //Количество здоровья
                                              
     public Text woodText;                    //Информация о ресурсах
+    public Text ammoText;
     public AudioClip woodHit;                //Звук удара топором по дереву
 
 
@@ -61,10 +64,14 @@ public class PlayerMove : MonoBehaviour
     {
 
         woodText.text = "Дерево: " + woodCount.ToString()+"\nЗдоровье: "+hp.ToString();
-        
+        if (weaponSwitch.weapon.name == "Pistol")
+        {
+            ammoText.text = weaponSwitch.weapon.GetComponent<PistolShoot>().bullets+"/"+weaponSwitch.weapon.GetComponent<PistolShoot>()
+                .maxBullets;
+        }
 
 
-         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (enableFallDamage)
         {
@@ -134,25 +141,68 @@ public class PlayerMove : MonoBehaviour
         }
 
 
+        if(Input.GetButtonDown("Reload"))
+        {
+            if (weaponSwitch.weapon.name == "Pistol")
+            {
+                weaponSwitch.weapon.GetComponent<PistolShoot>().Reload();
+            }
+        }
+
+
+
         if (Input.GetButtonDown("Fire1"))
         {
-            print(weaponSwitch.weapon);
+            //print(weaponSwitch.weapon);
            RaycastHit hit;
            if (weaponSwitch.weapon.name == "Pistol")  //Выстрел с пистолета
            {
-
-               animator.Play("Shot");
-
-                if (MeleeHit(transformCamera, 600f, enemyMask, out hit))
+               if (weaponSwitch.weapon.GetComponent<PistolShoot>().CanShot())
                {
-                   hit.transform.GetComponent<EnemyController>().MakeDamage(hitDamage);
-                   weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, false);
-                }
+                   
+                   //print("Можно стрелять");
+
+                   animator.Play("Shot");
+
+
+                   Physics.Raycast(transformCamera.position, transformCamera.forward, out hit, 1231f);
+                   print(enemyMask.value);
+
+                    if (hit.transform.gameObject.layer == enemyMask)
+                    {
+                        hit.transform.GetComponent<EnemyController>().MakeDamage(hitDamage);
+                        weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, false);
+                    }
+                   else if (hit.transform.gameObject.layer == playerMask)
+                   {
+                       weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, false);
+                   }
+                   else
+                   {
+
+                       weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, true);
+                   }
+
+
+
+               }
                else
                {
-                   Physics.Raycast(transformCamera.position, transformCamera.forward, out hit, 1231f);
-                   weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, true);
-                }
+                   //Звук не заряженного пистолета
+               }
+               
+
+
+               // if (MeleeHit(transformCamera, 600f, enemyMask, out hit))
+               // {
+               //    hit.transform.GetComponent<EnemyController>().MakeDamage(hitDamage);
+               //    weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, false);
+               // }
+               //else
+               //{
+               //    Physics.Raycast(transformCamera.position, transformCamera.forward, out hit, 1231f);
+               //    weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, true);
+               // }
 
                
             }
