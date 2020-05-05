@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class PistolShoot : MonoBehaviour
 {
-
+    private Transform player;
+    private PlayerMove playerMove;
     public GameObject effect;
     public AudioClip BulletSound;
     public AudioClip clickSound;
@@ -17,6 +18,12 @@ public class PistolShoot : MonoBehaviour
 
     public int bullets = 7;
 
+
+    void Start()
+    {
+        player = PlayerManager.instance.player.transform;
+        playerMove = player.GetComponent<PlayerMove>();
+    }
 
 
     public bool Shot(RaycastHit hit,bool hole)
@@ -43,15 +50,65 @@ public class PistolShoot : MonoBehaviour
 
     }
 
+    public bool FakeShoot()
+    {
+        if (bullets > 0)
+        {
+            bullets -= 1;
+            Instantiate(effect, GameObject.FindGameObjectWithTag("PistolNose").transform);
+            GameObject a = new GameObject();
+            a.AddComponent<AudioSource>().clip = BulletSound;
+            a.GetComponent<AudioSource>().Play();
+            a.AddComponent<AutoRemove>();
+          
+            return true;
+
+        }
+
+        return false;
+    }
+
     public void Reload()
     {
-        if (!GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Reload"))
-        {
-            GetComponent<Animator>().SetTrigger("Reload");
-            bullets = maxBullets;
-            SoundSysyem c = new SoundSysyem();
-            c.PlaySound2D(reloadSound, transform.position);
-        }
+      
+        if (playerMove.bulletCount>0)
+            if (!GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Reload"))
+            {
+                GetComponent<Animator>().SetTrigger("Reload");
+                if (playerMove.bulletCount > maxBullets)
+                {
+
+                    if(bullets == 0)
+                    {
+                        bullets = maxBullets;
+                        playerMove.bulletCount -= maxBullets;
+                    }
+                    else
+                    {
+                        int vr = maxBullets - bullets;
+                        bullets += vr;
+                        playerMove.bulletCount -= vr;
+                    }
+                }
+                else
+                {
+                    int vr = maxBullets - bullets;
+                    if (playerMove.bulletCount > vr)
+                    {
+                        bullets = maxBullets;
+                        playerMove.bulletCount -= vr;
+
+                    }
+                    else
+                    {
+                        bullets += playerMove.bulletCount;
+                        playerMove.bulletCount -= playerMove.bulletCount;
+                    }
+                }
+                    
+                SoundSysyem c = new SoundSysyem();
+                c.PlaySound2D(reloadSound, transform.position);
+            }
             
 
     }

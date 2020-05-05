@@ -9,6 +9,7 @@ TagManager:
   - FxTemporaire
   - PistolNose
   - Enemy
+  - Magazine
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Wood
   - Enemy
   - Player
-  - 
+  - Loot
   - 
   - 
   - 
