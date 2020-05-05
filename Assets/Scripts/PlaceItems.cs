@@ -23,7 +23,22 @@ public class PlaceItems : MonoBehaviour
     }
     void Update()
     {
+        Destroy(prev);
+        GameObject player = PlayerManager.instance.player;
 
+        Camera playerCamera = PlayerManager.instance.player.GetComponentInChildren<Camera>();
+        RaycastHit hit;
+        Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 1231f, playerMove.groundMask);
+        Quaternion vr = Quaternion.FromToRotation(Vector3.up, hit.normal);
+        float x = Mathf.Abs(vr.x);
+        float z = Mathf.Abs(vr.z);
+
+        if (x > 0.3 || z > 0.3)
+            canPlace = false;
+        else
+        {
+            canPlace = true;
+        }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -35,60 +50,48 @@ public class PlaceItems : MonoBehaviour
             else
             {
                 isPlacing = true;
-                if (isPlacing)
-                {
-                    GameObject player = PlayerManager.instance.player;
-
-                    Camera playerCamera = PlayerManager.instance.player.GetComponentInChildren<Camera>();
-                    RaycastHit hit;
-                    Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 1231f);
-                   
-                    if (playerMove.woodCount > 1100&&playerMove.rockCount>400)
-                    {
-                        prev = Instantiate(campFirePreviewGreen, hit.point + new Vector3(0, 0.1f), Quaternion.identity);
-                    }
-                    else
-                    {
-                        prev = Instantiate(campFirePreviewRed, hit.point + new Vector3(0, 0.1f), Quaternion.identity);
-                    }
-                    if (Vector3.Distance(hit.point, player.transform.position) > 5f)
-                    {
-                        isPlacing = false;
-                        Destroy(prev);
-                    }
-                }
+               
             }
                 
             
         }
-
         if (isPlacing)
         {
-            GameObject player = PlayerManager.instance.player;
+            player = PlayerManager.instance.player;
 
-            Camera playerCamera = PlayerManager.instance.player.GetComponentInChildren<Camera>();
-            RaycastHit hit;
-            Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 1231f);
+            playerCamera = PlayerManager.instance.player.GetComponentInChildren<Camera>();
+
+            Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 1231f,playerMove.groundMask);
+
+            if (playerMove.woodCount > 1100 && playerMove.rockCount > 400 && canPlace)
+            {
+                prev = Instantiate(campFirePreviewGreen, hit.point + new Vector3(0, 0.1f), Quaternion.identity);
+            }
+            else
+            {
+                prev = Instantiate(campFirePreviewRed, hit.point + new Vector3(0, 0.1f), Quaternion.identity);
+
+            }
             if (Vector3.Distance(hit.point, player.transform.position) > 5f)
             {
                 isPlacing = false;
                 Destroy(prev);
             }
-            prev.transform.position = hit.point + new Vector3(0, 0.1f);
             prev.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
         }
 
+
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if(playerMove.woodCount>1100 && playerMove.rockCount > 400)
+            if(playerMove.woodCount>1100 && playerMove.rockCount > 400 && canPlace)
                 if (isPlacing)
                 {
                     isPlacing = false;
-                    GameObject player = PlayerManager.instance.player;
+                    player = PlayerManager.instance.player;
 
-                    Camera playerCamera = PlayerManager.instance.player.GetComponentInChildren<Camera>();
-                    RaycastHit hit;
-                    Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 1231f);
+                    playerCamera = PlayerManager.instance.player.GetComponentInChildren<Camera>();
+                    
+                    Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 1231f, playerMove.groundMask);
                     Destroy(prev);
                     Instantiate(originalCampFire, hit.point+new Vector3(0, 0.1f), Quaternion.FromToRotation(Vector3.up, hit.normal));
                     playerMove.woodCount -= 1100;

@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 1235674468793446505}
   - component: {fileID: 1235674468793446506}
   - component: {fileID: -1871544507225636451}
+  - component: {fileID: -2629480465820673427}
   m_Layer: 14
   m_Name: Magazine
   m_TagString: Magazine
@@ -220,3 +221,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 6ddbb63cb406bf94389c83c6ddffc76a, type: 3}
+--- !u!114 &-2629480465820673427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235674468793446487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51f91e3b23aff14b9cc1660a4f29e30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  count: 0

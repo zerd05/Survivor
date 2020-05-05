@@ -8,6 +8,9 @@ public class CampFire : MonoBehaviour
     void Start()
     {
         player = PlayerManager.instance.player.transform;
+
+
+        transform.GetChild(0).rotation = Quaternion.LookRotation(Vector3.right); // Направление огня от костра вверх
     }
 
     // Update is called once per frame
@@ -21,5 +24,6 @@ public class CampFire : MonoBehaviour
         {
             player.GetComponent<PlayerMove>().CampFireActive(false);
         }
+
     }
 }
