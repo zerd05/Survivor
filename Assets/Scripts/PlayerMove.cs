@@ -26,9 +26,12 @@ public class PlayerMove : MonoBehaviour
     public float meleeDistance = 4f;
                                              
     public Transform transformCamera;        //Камера персонажа
+
+    [Header("Слои")]
     public LayerMask woodMask;               //Слой дерева
-    public LayerMask enemyMask;
-    public LayerMask playerMask;
+    public LayerMask enemyMask;              //Слой врага
+    public LayerMask playerMask;             //Слой персонажа
+    public LayerMask lootMask;               //Слой предментов
                                              
     public int hitDamage = 50;               //Урон от удара
 
@@ -38,8 +41,15 @@ public class PlayerMove : MonoBehaviour
 
 
     private int woodCount = 0;               //Количество дерева
-    public int hp = 100;                     //Количество здоровья
-                                             
+
+    [Header("Свойства персонажа")]
+    public float hp = 100;                     //Количество здоровья
+    public float eat = 100;
+    public float water = 100;
+    public Image hpBar;
+    public Image eatBar;
+    public Image waterBar;
+
     public Text woodText;                    //Информация о ресурсах
     public Text ammoText;
     public AudioClip woodHit;                //Звук удара топором по дереву
@@ -54,6 +64,7 @@ public class PlayerMove : MonoBehaviour
 
     public GameObject bulletEffect;
 
+    public int bulletCount;
 
 
     public Vector3 punch = new Vector3(0, 0);
@@ -61,20 +72,84 @@ public class PlayerMove : MonoBehaviour
     [Space]
     [Header("Debug")]
     public GameObject enemy;
+
+    private bool isCampFireActive;
+    private bool drawGUI;
+    public void CampFireActive(bool status)
+    {
+        isCampFireActive = status;
+    }
     void Start()
     {
         
+    }
+
+    void FixedUpdate()
+    {
+       
+
+        if (eat < 0)
+            eat = 0;
+        eat -= 0.001f;
+        if (water < 0)
+                water = 0;
+        water -= 0.01f;
+        if (Input.GetAxis("Sprint") > 0 && isGrounded)
+        {
+            eat -= 0.001f;
+            water -= 0.01f;
+        }
+        
+        if (hp < 100 && water > 0 && eat > 0)
+        {
+            hp += 0.01f;
+            if (isCampFireActive)
+                hp += 0.1f;
+        }
+
+        if (hp > 100)
+            hp = 100;
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
+
+
+        UpdateBars();
+
+        RaycastHit ray;
+
+        Physics.Raycast(transformCamera.position, transformCamera.forward, out ray, 2f,lootMask);
+        if (ray.transform != null)
+        {
+            drawGUI = true;
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+
+                if (ray.transform.tag == "Magazine")
+                {
+                    bulletCount += 14;
+                }
+                
+                Destroy(ray.transform.gameObject);
+
+            }
+        }
+        else
+        {
+            drawGUI = false;
+        }
+
+
+
         woodText.text = "Дерево: " + woodCount.ToString()+"\nЗдоровье: "+hp.ToString();
         if (weaponSwitch.weapon.name == "Pistol")
         {
-            ammoText.text = weaponSwitch.weapon.GetComponent<PistolShoot>().bullets+"/"+weaponSwitch.weapon.GetComponent<PistolShoot>()
-                .maxBullets;
+            ammoText.text = weaponSwitch.weapon.GetComponent<PistolShoot>().bullets+"/"+bulletCount;
         }
 
 
@@ -174,44 +249,35 @@ public class PlayerMove : MonoBehaviour
 
                    Physics.Raycast(transformCamera.position, transformCamera.forward, out hit, 1231f);
 
-
-                    if (hit.transform.gameObject.layer == Mathf.Log(enemyMask,2))
-                    {
-                        hit.transform.GetComponent<EnemyController>().MakeDamage(hitDamage);
-                        weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, false);
-                    }
-                   else if (hit.transform.gameObject.layer == Mathf.Log(playerMask,2))
+                   if (hit.transform != null)
                    {
-                        Physics.Raycast(transformCamera.position, transformCamera.forward, out hit, 1231f,groundMask);
-                        weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, true);
+                       if (hit.transform.gameObject.layer == Mathf.Log(enemyMask, 2))
+                       {
+                           hit.transform.GetComponent<EnemyController>().MakeDamage(hitDamage);
+                           weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, false);
+                       }
+                       else if (hit.transform.gameObject.layer == Mathf.Log(playerMask, 2))
+                       {
+                           Physics.Raycast(transformCamera.position, transformCamera.forward, out hit, 1231f, groundMask);
+                           weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, true);
 
-                   }
+                       }
+                       else
+                       {
+
+                           weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, true);
+                       }
+                    }
                    else
                    {
-
-                       weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, true);
-                   }
-
+                       weaponSwitch.weapon.GetComponent<PistolShoot>().FakeShoot();
+                    }
+                   
+                    
 
 
                }
-               else
-               {
-                   //Звук не заряженного пистолета
-               }
-               
 
-
-               // if (MeleeHit(transformCamera, 600f, enemyMask, out hit))
-               // {
-               //    hit.transform.GetComponent<EnemyController>().MakeDamage(hitDamage);
-               //    weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, false);
-               // }
-               //else
-               //{
-               //    Physics.Raycast(transformCamera.position, transformCamera.forward, out hit, 1231f);
-               //    weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, true);
-               // }
 
                
             }
@@ -264,10 +330,7 @@ public class PlayerMove : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            foreach (var a in GameObject.FindGameObjectsWithTag("Enemy"))
-            {
-                a.GetComponent<Rigidbody>().AddForce(new Vector3(0f, 50, 0f));
-            }
+            
         }
         velocity.y += gravity * Time.deltaTime;
 
@@ -279,7 +342,17 @@ public class PlayerMove : MonoBehaviour
 
     }
 
-
+    private void OnGUI()
+    {
+        if (drawGUI)
+            GUI.Box(new Rect(Screen.width*0.5f - 51, Screen.height*0.5f + 22, 102, 22), "Нажмите Е чтобы подобрать");
+    }
+    public void UpdateBars()
+    {
+        hpBar.GetComponent<SimpleHealthBar>().UpdateBar(hp,100);
+        eatBar.GetComponent<SimpleHealthBar>().UpdateBar(eat,100);
+        waterBar.GetComponent<SimpleHealthBar>().UpdateBar(water, 100);
+    }
     public void TakeDamage(int damage)
     {
         hp -= damage;

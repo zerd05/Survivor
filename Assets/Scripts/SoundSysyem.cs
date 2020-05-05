@@ -21,7 +21,6 @@ public class SoundSysyem : MonoBehaviour
 
 
 
-
     }
 
     public void PlaySound2D(AudioClip sound, Vector3 position)
