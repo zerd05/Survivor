@@ -12,7 +12,7 @@ public class PistolShoot : MonoBehaviour
     public AudioClip clickSound;
     public AudioClip reloadSound;
     public GameObject BulletHole;
-
+    public int damage = 35;
 
     public int maxBullets = 7;
 
@@ -70,7 +70,8 @@ public class PistolShoot : MonoBehaviour
 
     public void Reload()
     {
-      
+      if(bullets==maxBullets)
+          return;
         if (playerMove.bulletCount>0)
             if (!GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Reload"))
             {
