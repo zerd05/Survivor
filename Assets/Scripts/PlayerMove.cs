@@ -32,15 +32,19 @@ public class PlayerMove : MonoBehaviour
     public LayerMask enemyMask;              //Слой врага
     public LayerMask playerMask;             //Слой персонажа
     public LayerMask lootMask;               //Слой предментов
-                                             
+    public LayerMask rockMask;               //Слой камней
+    [Space]             
     public int hitDamage = 50;               //Урон от удара
 
     public float fallWithoutDamage = 10f;
     public bool enableFallDamage = true;     //Применять ли урон от падений
     public float fallDamageMultiplayer = 2.5f; // Множитель урона от падений 
 
+    [Header("Ресурсы")]
+    public int woodCount = 0;               //Количество дерева
+    public int bulletCount;
+    public int rockCount = 0;
 
-    private int woodCount = 0;               //Количество дерева
 
     [Header("Свойства персонажа")]
     public float hp = 100;                     //Количество здоровья
@@ -64,7 +68,7 @@ public class PlayerMove : MonoBehaviour
 
     public GameObject bulletEffect;
 
-    public int bulletCount;
+    
 
 
     public Vector3 punch = new Vector3(0, 0);
@@ -146,7 +150,7 @@ public class PlayerMove : MonoBehaviour
 
 
 
-        woodText.text = "Дерево: " + woodCount.ToString()+"\nЗдоровье: "+hp.ToString();
+        woodText.text = "Дерево: " + woodCount.ToString()+"\nКамень: "+rockCount.ToString()  +"\nЗдоровье: "+hp.ToString();
         if (weaponSwitch.weapon.name == "Pistol")
         {
             ammoText.text = weaponSwitch.weapon.GetComponent<PistolShoot>().bullets+"/"+bulletCount;
@@ -253,7 +257,7 @@ public class PlayerMove : MonoBehaviour
                    {
                        if (hit.transform.gameObject.layer == Mathf.Log(enemyMask, 2))
                        {
-                           hit.transform.GetComponent<EnemyController>().MakeDamage(hitDamage);
+                           hit.transform.GetComponent<EnemyController>().MakeDamage(weaponSwitch.weapon.GetComponent<PistolShoot>().damage);
                            weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, false);
                        }
                        else if (hit.transform.gameObject.layer == Mathf.Log(playerMask, 2))
@@ -292,14 +296,23 @@ public class PlayerMove : MonoBehaviour
                    {
                        GetComponent<AudioSource>().clip = woodHit;
                        GetComponent<AudioSource>().Play();
-                       print("hit");
+                       print("Wood hit");
                        hit.transform.GetComponent<wood>().Hp -= hitDamage;
                        woodCount += hitDamage;
 
                    }
+                   if (MeleeHit(transformCamera, meleeDistance, rockMask, out hit))
+                   {
+                       GetComponent<AudioSource>().clip = woodHit;
+                       GetComponent<AudioSource>().Play();
+                       print("Rock hit");
+                       hit.transform.GetComponent<Rock>().Hp -= hitDamage;
+                       rockCount += hitDamage;
+
+                   }
                    else if (MeleeHit(transformCamera, meleeDistance, enemyMask, out hit))
                    {
-                       hit.transform.GetComponent<EnemyController>().MakeDamage(hitDamage);
+                       hit.transform.GetComponent<EnemyController>().MakeDamage(hitDamage/4);
                    }
                    else
                    {
@@ -313,7 +326,7 @@ public class PlayerMove : MonoBehaviour
           
 
         }
-        if (Input.GetButton("Fire2"))
+        if (Input.GetButtonDown("Fire2"))
         {
             RaycastHit hit;
             Physics.Raycast(transformCamera.position, transformCamera.forward, out hit, 1231f);
