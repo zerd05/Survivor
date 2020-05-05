@@ -54,6 +54,15 @@ public class PlayerMove : MonoBehaviour
     public Image eatBar;
     public Image waterBar;
 
+    [Header("Выпадающие премдеты")]
+    public GameObject woodLoot;
+    public GameObject rockLoot;
+    public GameObject meatLoot;
+    public GameObject waterLoot;
+
+    [Space]
+
+
     public Text woodText;                    //Информация о ресурсах
     public Text ammoText;
     public AudioClip woodHit;                //Звук удара топором по дереву
@@ -127,7 +136,8 @@ public class PlayerMove : MonoBehaviour
 
         RaycastHit ray;
 
-        Physics.Raycast(transformCamera.position, transformCamera.forward, out ray, 2f,lootMask);
+
+        Physics.Raycast(transformCamera.position, transformCamera.forward, out ray, 3f,lootMask); //Подбор пердметов
         if (ray.transform != null)
         {
             drawGUI = true;
@@ -138,7 +148,15 @@ public class PlayerMove : MonoBehaviour
                 {
                     bulletCount += 14;
                 }
-                
+                if (ray.transform.tag == "Rock")
+                {
+                    rockCount += ray.transform.GetComponent<Loot>().count;
+                }
+                if (ray.transform.tag == "Wood")
+                {
+                    woodCount += ray.transform.GetComponent<Loot>().count;
+                }
+
                 Destroy(ray.transform.gameObject);
 
             }
@@ -209,7 +227,7 @@ public class PlayerMove : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        if(Input.GetAxis("Sprint")>0 && isGrounded)
+        if(Input.GetAxis("Sprint")>0 && isGrounded && Input.GetKey(KeyCode.W))
         {
             animator.SetBool("Run", true);
             controller.Move(move * speedSprint * Time.deltaTime);
@@ -288,7 +306,7 @@ public class PlayerMove : MonoBehaviour
            else
            {
 
-               if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Swing"))
+               if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Swing"))   //Удары
                {
 
                    animator.Play("Swing");
@@ -298,7 +316,8 @@ public class PlayerMove : MonoBehaviour
                        GetComponent<AudioSource>().Play();
                        print("Wood hit");
                        hit.transform.GetComponent<wood>().Hp -= hitDamage;
-                       woodCount += hitDamage;
+                      
+                       CreateLoot(woodLoot,hitDamage);
 
                    }
                    if (MeleeHit(transformCamera, meleeDistance, rockMask, out hit))
@@ -307,7 +326,8 @@ public class PlayerMove : MonoBehaviour
                        GetComponent<AudioSource>().Play();
                        print("Rock hit");
                        hit.transform.GetComponent<Rock>().Hp -= hitDamage;
-                       rockCount += hitDamage;
+                    
+                       CreateLoot(rockLoot,hitDamage);
 
                    }
                    else if (MeleeHit(transformCamera, meleeDistance, enemyMask, out hit))
@@ -355,6 +375,14 @@ public class PlayerMove : MonoBehaviour
 
     }
 
+
+    public void CreateLoot(GameObject item,int count)
+    {
+        RaycastHit hit;
+        Physics.Raycast(transformCamera.position, transformCamera.forward, out hit, 255f);
+        Instantiate(item, hit.point, Quaternion.identity).GetComponent<Loot>().count = count;
+        
+    }
     private void OnGUI()
     {
         if (drawGUI)

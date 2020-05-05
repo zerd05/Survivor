@@ -103,8 +103,8 @@ MonoBehaviour:
   Health: 124
   animator: {fileID: 7988914108842985164}
   wanderRadius: 35.5
-  wanderSpeed: 0.32
-  findPlayerSpeed: 5.04
+  wanderSpeed: 1.36
+  findPlayerSpeed: 6.76
   hitRate: 0.34
   standartLookRadius: 11.79
   hitAudioClips:
