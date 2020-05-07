@@ -26,6 +26,13 @@ public class WeaponSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (maxWeapons != transform.childCount - 1)
+        {
+            maxWeapons = transform.childCount-1;
+            currentWeapon = transform.childCount - 1;
+            SelectWeapon(currentWeapon);
+        }
+        
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
             if (currentWeapon + 1 <= maxWeapons)

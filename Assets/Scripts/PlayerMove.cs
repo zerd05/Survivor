@@ -36,12 +36,19 @@ public class PlayerMove : MonoBehaviour
     public LayerMask playerMask;             //Слой персонажа
     public LayerMask lootMask;               //Слой предментов
     public LayerMask rockMask;               //Слой камней
+    public LayerMask animalMask;             //Слой животных
+    public LayerMask foodMask;               //Слой еды
     [Space]             
     public int hitDamage = 50;               //Урон от удара
 
     public float fallWithoutDamage = 10f;
     public bool enableFallDamage = true;     //Применять ли урон от падений
     public float fallDamageMultiplayer = 2.5f; // Множитель урона от падений 
+
+
+    [Header("Сложность")]
+    public int eatLootPerHit = 15;          //Количество еды выпадающее за 1 удар
+
 
     [Header("Ресурсы")]
     public int woodCount = 0;               //Количество дерева
@@ -60,8 +67,10 @@ public class PlayerMove : MonoBehaviour
     [Header("Выпадающие премдеты")]
     public GameObject woodLoot;
     public GameObject rockLoot;
-    public GameObject meatLoot;
     public GameObject waterLoot;
+    public GameObject chickenLoot;
+    public GameObject pigLoot;
+    public GameObject cowLoot;
 
     [Space]
 
@@ -159,6 +168,18 @@ public class PlayerMove : MonoBehaviour
                 {
                     woodCount += ray.transform.GetComponent<Loot>().count;
                 }
+                if (ray.transform.tag == "Food")
+                {
+                    eat += ray.transform.GetComponent<Loot>().count;
+                    if (eat > 100)
+                        eat = 100;
+                }
+                if (ray.transform.tag == "Water")
+                {
+                    water += ray.transform.GetComponent<Loot>().count;
+                    if (water > 100)
+                        water = 100;
+                }
 
                 Destroy(ray.transform.gameObject);
 
@@ -175,6 +196,10 @@ public class PlayerMove : MonoBehaviour
         if (weaponSwitch.weapon.name == "Pistol")
         {
             ammoText.text = weaponSwitch.weapon.GetComponent<PistolShoot>().bullets+"/"+bulletCount;
+        }
+        else
+        {
+            ammoText.text = "";
         }
 
 
@@ -281,7 +306,13 @@ public class PlayerMove : MonoBehaviour
                            hit.transform.GetComponent<EnemyController>().MakeDamage(weaponSwitch.weapon.GetComponent<PistolShoot>().damage);
                            weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, false);
                        }
-                       else if (hit.transform.gameObject.layer == Mathf.Log(playerMask, 2))
+                       else if (hit.transform.gameObject.layer == Mathf.Log(animalMask, 2))
+                       {
+                           hit.transform.GetComponent<AnimalController>().MakeDamage(weaponSwitch.weapon.GetComponent<PistolShoot>().damage);
+                           weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, false);
+
+                        }
+                        else if (hit.transform.gameObject.layer == Mathf.Log(playerMask, 2))
                        {
                            Physics.Raycast(transformCamera.position, transformCamera.forward, out hit, 1231f, groundMask);
                            weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, true);
@@ -309,18 +340,28 @@ public class PlayerMove : MonoBehaviour
            else
            {
 
+
                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Swing"))   //Удары
                {
 
                    animator.Play("Swing");
                    if (MeleeHit(transformCamera, meleeDistance, woodMask, out hit))
                    {
+
                        GetComponent<AudioSource>().clip = woodHit;
                        GetComponent<AudioSource>().Play();
                        print("Wood hit");
-                       hit.transform.GetComponent<wood>().Hp -= hitDamage;
-                      
-                       CreateLoot(woodLoot,hitDamage);
+                       if (weaponSwitch.weapon.name == "Axe")
+                       {
+                           hit.transform.GetComponent<wood>().Hp -= hitDamage;
+                           CreateLoot(woodLoot, hitDamage);
+                       }
+                       else
+                       {
+                           hit.transform.GetComponent<wood>().Hp -= hitDamage/10;
+                           CreateLoot(woodLoot, hitDamage/10);
+                       }
+                       
 
                    }
                    if (MeleeHit(transformCamera, meleeDistance, rockMask, out hit))
@@ -328,12 +369,65 @@ public class PlayerMove : MonoBehaviour
                        GetComponent<AudioSource>().clip = woodHit;
                        GetComponent<AudioSource>().Play();
                        print("Rock hit");
-                       hit.transform.GetComponent<Rock>().Hp -= hitDamage;
-                    
-                       CreateLoot(rockLoot,hitDamage);
+
+
+                       if (weaponSwitch.weapon.name == "Pickaxe")
+                       {
+                           hit.transform.GetComponent<Rock>().Hp -= hitDamage;
+                           CreateLoot(rockLoot, hitDamage);
+                        }
+                       else
+                       {
+                           hit.transform.GetComponent<Rock>().Hp -= hitDamage/10;
+                           CreateLoot(rockLoot, hitDamage/10);
+                        }
+                        
 
                    }
-                   else if (MeleeHit(transformCamera, meleeDistance, enemyMask, out hit))
+
+                   if (MeleeHit(transformCamera, meleeDistance, foodMask, out hit))
+                   {
+
+                       GetComponent<AudioSource>().clip = woodHit;
+                       GetComponent<AudioSource>().Play();
+                       print("Food hit");
+                       hit.transform.GetComponent<AnimalController>().deadHealth -= hitDamage;
+
+                       int lootCount = eatLootPerHit;
+                       if (weaponSwitch.weapon.name != "Knife")
+                       {
+                           lootCount = lootCount/3;
+                       }
+
+                        switch (hit.transform.tag)
+                       {
+                               case "Chicken":
+                               {
+                                  
+                                       CreateLoot(chickenLoot, lootCount);
+                                   
+                                }
+                                break;
+                               case "Cow":
+                               {
+                                   CreateLoot(cowLoot, lootCount);
+
+
+                               }
+                                   break;
+                               case "Pig":
+                               {
+                                   CreateLoot(pigLoot, lootCount);
+                               }
+                                   break;
+
+                        }
+                   }
+                   if (MeleeHit(transformCamera, meleeDistance, animalMask, out hit))
+                   {
+                       hit.transform.GetComponent<AnimalController>().MakeDamage(hitDamage / 4);
+                   }
+                    else if (MeleeHit(transformCamera, meleeDistance, enemyMask, out hit))
                    {
                        hit.transform.GetComponent<EnemyController>().MakeDamage(hitDamage/4);
                    }
@@ -378,7 +472,11 @@ public class PlayerMove : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Создание лута
+    /// </summary>
+    /// <param name="item">Предмет для создания</param>
+    /// <param name="count">Количество лута в предмете</param>
     public void CreateLoot(GameObject item,int count)
     {
         RaycastHit hit;

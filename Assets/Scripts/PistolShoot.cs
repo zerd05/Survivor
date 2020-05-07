@@ -31,7 +31,7 @@ public class PistolShoot : MonoBehaviour
         if (bullets > 0)
         {
             bullets -= 1;
-            Instantiate(effect, GameObject.FindGameObjectWithTag("PistolNose").transform);
+            Instantiate(effect, GameObject.FindGameObjectWithTag("PistolNose").transform).GetComponent<AutoRemove>().lifeTime = 0.2f;
             GameObject a = new GameObject();
             a.AddComponent<AudioSource>().clip = BulletSound;
             a.GetComponent<AudioSource>().Play();
@@ -55,7 +55,7 @@ public class PistolShoot : MonoBehaviour
         if (bullets > 0)
         {
             bullets -= 1;
-            Instantiate(effect, GameObject.FindGameObjectWithTag("PistolNose").transform);
+            Instantiate(effect, GameObject.FindGameObjectWithTag("PistolNose").transform).GetComponent<AutoRemove>().lifeTime = 0.2f;
             GameObject a = new GameObject();
             a.AddComponent<AudioSource>().clip = BulletSound;
             a.GetComponent<AudioSource>().Play();

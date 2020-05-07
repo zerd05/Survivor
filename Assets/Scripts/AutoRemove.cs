@@ -18,5 +18,10 @@ public class AutoRemove : MonoBehaviour
         StartCoroutine(breakObject());
     }
 
+    void Update()
+    {
+        StartCoroutine(breakObject());
+    }
+
 
 }
