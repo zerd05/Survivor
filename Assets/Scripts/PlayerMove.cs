@@ -33,6 +33,7 @@ public class PlayerMove : MonoBehaviour
     [Header("Слои")]
     public LayerMask woodMask;               //Слой дерева
     public LayerMask enemyMask;              //Слой врага
+    public LayerMask armyMask;              //Слой врага
     public LayerMask playerMask;             //Слой персонажа
     public LayerMask lootMask;               //Слой предментов
     public LayerMask rockMask;               //Слой камней
@@ -431,7 +432,11 @@ public class PlayerMove : MonoBehaviour
                    {
                        hit.transform.GetComponent<EnemyController>().MakeDamage(hitDamage/4);
                    }
-                   else
+                    else if (MeleeHit(transformCamera, meleeDistance, armyMask, out hit))
+                    {
+                        hit.transform.GetComponent<ArmyController>().MakeDamage(hitDamage / 4);
+                    }
+                    else
                    {
                        print("not Hit");
                    }
