@@ -204,9 +204,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 131072
   animator: {fileID: 1806121918601262843}
-  wanderRadius: 7
-  wanderSpeed: 4
-  runSpeed: 2
+  wanderRadius: 23.3
+  wanderSpeed: 1.69
+  runSpeed: 11.21
   hitAudioClip: {fileID: 8300000, guid: c1f8ed4c3961ed84c8748182dda286d9, type: 3}
   WalkAudioClip: {fileID: 0}
 --- !u!54 &1806121918601262841
