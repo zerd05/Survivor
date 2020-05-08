@@ -1,11 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class ArmyController : MonoBehaviour
 {
+
+    public AudioClip shootSound;
+    public int shootDamage;
+    public GameObject shootEffect;
+    public GameObject shootEffectPlace;
+    public GameObject pistolTip;
+    public LayerMask armyLootLayer;
+    public int deadHealth = 300;
+
+    public GameObject pistolLoot;
+    public int hitChance = 100;
+
     public int Health = 23123;
 
 
@@ -15,22 +29,19 @@ public class ArmyController : MonoBehaviour
 
     public Animator animator;
 
-
+    public float stoppingDistance = 5;
     public float wanderRadius = 7f;
     public float wanderSpeed = 4f;
     public float findPlayerSpeed = 2f;
 
     private NavMeshAgent agent;
     private Vector3 wanderPoint;
-    // Start is called before the first frame update
 
     private float nextTimeToHit;
-    public float hitRate = 0.34f;
 
     public float standartLookRadius;
-
     [Header("Sounds")]
-    public AudioClip[] hitAudioClips;
+    public AudioClip hitAudioClip;
 
 
 
@@ -42,7 +53,11 @@ public class ArmyController : MonoBehaviour
         wanderPoint = RandomWanderPoint();
 
     }
-
+    public void PlaySound(AudioClip sound)
+    {
+        SoundSysyem soundSysyem = new SoundSysyem();
+        soundSysyem.PlaySound(sound, transform.position);
+    }
 
     public void MakeDamage(int damage)
     {
@@ -50,7 +65,7 @@ public class ArmyController : MonoBehaviour
         //animator.SetTrigger("Hit");
         lookRadius = standartLookRadius * 100;
         StartCoroutine(StopHuntPlayer());
-
+        PlaySound(hitAudioClip);
 
 
 
@@ -59,18 +74,9 @@ public class ArmyController : MonoBehaviour
         SoundSysyem sounds = new SoundSysyem();
 
         //sounds.PlaySound(hitAudioClips[soundNumber], transform.position);
-
-        agent.enabled = false;
-        StartCoroutine(StopWalk());
+        animator.SetTrigger("Hit");
     }
 
-    private IEnumerator StopWalk()
-    {
-        yield return new WaitForSeconds(0.2f);
-        agent.enabled = true;
-
-
-    }
 
     private IEnumerator StopHuntPlayer()
     {
@@ -80,23 +86,38 @@ public class ArmyController : MonoBehaviour
 
     }
 
+    private bool deadThings = false;
     void Update()
     {
+      if(deadHealth<=0)
+          Destroy(gameObject);
 
-        //animator.SetInteger("Health", Health);
-
+        animator.SetBool("Run",true);
         if (Health <= 0)
         {
-            GetComponent<NavMeshAgent>().enabled = false;
-            //animator.SetBool("Walk", false);
-            //animator.SetBool("Attack", false);
-            //animator.SetBool("Run", false);
-            GetComponent<CapsuleCollider>().enabled = false;
-            GetComponent<Animator>().enabled = false;
+            
+            if(!deadThings)
 
-            enabled = false;
-            Destroy(GetComponent<Rigidbody>());
-            GetComponent<CapsuleCollider>().enabled = false;
+            {
+                CharacterJoint[] a = GetComponentsInChildren<CharacterJoint>();
+                foreach (CharacterJoint c in a)
+                {
+                    c.enableProjection = true;
+                    c.enableCollision = true;
+                    c.gameObject.AddComponent<ColiderArmy>().armyController = this;
+                    c.gameObject.layer = Convert.ToInt32(Mathf.Log(armyLootLayer, 2));
+                }
+
+                GetComponent<CapsuleCollider>().enabled = false;
+                GetComponent<Animator>().enabled = false;
+
+
+                Destroy(GetComponent<Rigidbody>());
+                GetComponent<CapsuleCollider>().enabled = false;
+                Destroy(agent);
+                deadThings = true;
+                return;
+            }
             return;
 
         }
@@ -106,26 +127,49 @@ public class ArmyController : MonoBehaviour
 
         float distance = Vector3.Distance(target.position, transform.position);
 
-        if (agent.enabled)
+      
             if (distance <= lookRadius)
             {
-                lookRadius = standartLookRadius * 100;
-                StartCoroutine(StopHuntPlayer());
-                agent.speed = findPlayerSpeed;
-                //animator.SetBool("Walk", false);
-                //animator.SetBool("Run", true);
-                agent.SetDestination(target.position);
-
-                if (distance <= agent.stoppingDistance + 0.4)
+                if(agent.enabled)
                 {
-                    FaceTarget();
-                    //animator.SetBool("Attack", true);
+                    lookRadius = standartLookRadius * 100;
+                    StartCoroutine(StopHuntPlayer());
+                    agent.speed = findPlayerSpeed;
+                    //animator.SetBool("Walk", false);
+                    //animator.SetBool("Run", true);
+                    agent.SetDestination(target.position);
+                }
 
-           
+                RaycastHit ray;
+                Physics.Raycast(pistolTip.transform.position, target.position- pistolTip.transform.position, out ray, 400f);
+                
+
+                if (distance <= stoppingDistance + 0.4)
+                {
+                    if(ray.transform!=null)
+                        if (ray.transform.tag == "Player")
+                        {
+                            FaceTarget();
+                            animator.SetBool("Shooting", true);
+                            if (agent.enabled)
+                                agent.SetDestination(transform.position);
+                        }
+                        else
+                        {
+                            animator.SetBool("Shooting", false);
+                            if (agent.enabled)
+                                agent.SetDestination(target.position);
+                        }
+                    
+
+
                 }
                 else
                 {
-                    //animator.SetBool("Attack", false);
+                    FaceTarget();
+                    animator.SetBool("Shooting", false);
+                    agent.enabled = true;
+                    agent.SetDestination(target.position);
                 }
             }
             else
@@ -139,13 +183,18 @@ public class ArmyController : MonoBehaviour
             }
     }
 
+
+
     void Attack()
     {
-        if (Vector3.Distance(target.position, transform.position) < 2f)
-        {
-            target.GetComponent<PlayerMove>().TakeDamage(20);
-            //target.GetComponent<PlayerMove>().Kick(transform.forward * 150f + new Vector3(0, 150, 0));
-        }
+
+            if(Random.Range(1, 100)<hitChance)
+                target.GetComponent<PlayerMove>().TakeDamage(shootDamage);
+            SoundSysyem a = new SoundSysyem();
+            a.PlaySound(shootSound,transform.position);
+            Instantiate(shootEffect, shootEffectPlace.transform).GetComponent<AutoRemove>().lifeTime = 0.2f;
+        //target.GetComponent<PlayerMove>().Kick(transform.forward * 150f + new Vector3(0, 150, 0));
+
 
     }
 
@@ -179,6 +228,8 @@ public class ArmyController : MonoBehaviour
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, lookRadius = standartLookRadius);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, stoppingDistance);
     }
 
     public Vector3 RandomWanderPoint()

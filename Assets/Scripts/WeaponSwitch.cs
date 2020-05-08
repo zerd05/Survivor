@@ -72,6 +72,18 @@ public class WeaponSwitch : MonoBehaviour
 
     }
 
+    public List<string> WeaponNames()
+    {
+        List<string> weapons = new List<string>();
+        for (int i = 0; i < transform.childCount; i++)
+        {
+           
+                weapons.Add(transform.GetChild(i).name);
+              
+        }
+
+        return weapons;
+    }
     void SelectWeapon(int index)
     {
         for (int i = 0; i < transform.childCount; i++)

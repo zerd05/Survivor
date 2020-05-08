@@ -11,6 +11,11 @@ public class TakeWeapons : MonoBehaviour
     public GameObject pistolPrefab;
     public GameObject knifePrefab;
 
+    [Header("Sounds")]
+    public AudioClip takePistol;
+
+    public AudioClip takeKnife;
+
     void Start()
     {
         playerMove = GetComponent<PlayerMove>();
@@ -37,8 +42,13 @@ public class TakeWeapons : MonoBehaviour
                             if (hand.transform.GetChild(i).name == "Pistol")
                                 canCreate = false;
                         }
+
                         if (canCreate)
+                        {
                             Instantiate(pistolPrefab, hand.transform).name = "Pistol";
+                            playerMove.PlaySound(takePistol);
+                        }
+                            
                     }
                     if (ray.transform.tag == "KnifeLoot")
                     {
@@ -47,8 +57,13 @@ public class TakeWeapons : MonoBehaviour
                             if (hand.transform.GetChild(i).name == "Knife")
                                 canCreate = false;
                         }
+
                         if (canCreate)
+                        {
                             Instantiate(knifePrefab, hand.transform).name = "Knife";
+                            playerMove.PlaySound(takeKnife);
+                        }
+                           
                     }
                 
             }

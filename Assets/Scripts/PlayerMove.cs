@@ -1,5 +1,6 @@
 ﻿
 using System.Linq;
+using Boo.Lang;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -39,6 +40,7 @@ public class PlayerMove : MonoBehaviour
     public LayerMask rockMask;               //Слой камней
     public LayerMask animalMask;             //Слой животных
     public LayerMask foodMask;               //Слой еды
+    public LayerMask armyLootMask;           //Слой мертвого солдата
     [Space]             
     public int hitDamage = 50;               //Урон от удара
 
@@ -72,13 +74,30 @@ public class PlayerMove : MonoBehaviour
     public GameObject chickenLoot;
     public GameObject pigLoot;
     public GameObject cowLoot;
+    public GameObject pistolLoot;
+    public GameObject ammoLoot;
+    public GameObject knifeLoot;
 
     [Space]
 
 
     public Text woodText;                    //Информация о ресурсах
     public Text ammoText;
+
+    [Header("Sounds")]
     public AudioClip woodHit;                //Звук удара топором по дереву
+    public AudioClip playerHit;
+    public AudioClip notHit;
+    public AudioClip[] steps;
+    public AudioClip jump;
+    public AudioClip takePistol;
+    public AudioClip takeItem;
+    public AudioClip eatFood;
+    public AudioClip drinkSound;
+
+
+
+
 
 
     private float startFall;
@@ -90,7 +109,7 @@ public class PlayerMove : MonoBehaviour
 
     public GameObject bulletEffect;
 
-    
+    public TraumaInducer TraumaInducer;
 
 
     public Vector3 punch = new Vector3(0, 0);
@@ -101,13 +120,14 @@ public class PlayerMove : MonoBehaviour
 
     private bool isCampFireActive;
     private bool drawGUI;
+    private Vector3 prevStep;
     public void CampFireActive(bool status)
     {
         isCampFireActive = status;
     }
     void Start()
     {
-       
+        prevStep = transform.position;
     }
 
     void FixedUpdate()
@@ -160,28 +180,34 @@ public class PlayerMove : MonoBehaviour
                 if (ray.transform.tag == "Magazine")
                 {
                     bulletCount += 14;
+                    PlaySound(takePistol);
                 }
                 if (ray.transform.tag == "Rock")
                 {
                     rockCount += ray.transform.GetComponent<Loot>().count;
+                    PlaySound(takeItem);
                 }
                 if (ray.transform.tag == "Wood")
                 {
                     woodCount += ray.transform.GetComponent<Loot>().count;
+                    PlaySound(takeItem);
                 }
                 if (ray.transform.tag == "Food")
                 {
                     eat += ray.transform.GetComponent<Loot>().count;
                     if (eat > 100)
                         eat = 100;
+                    PlaySound(eatFood);
                 }
                 if (ray.transform.tag == "Water")
                 {
                     water += ray.transform.GetComponent<Loot>().count;
                     if (water > 100)
                         water = 100;
+                    PlaySound(drinkSound);
                 }
 
+                
                 Destroy(ray.transform.gameObject);
 
             }
@@ -220,12 +246,35 @@ public class PlayerMove : MonoBehaviour
                 endFall = transform.position.y;
 
                 fallHeight = Mathf.Abs(startFall) - Mathf.Abs(endFall);
-                if(fallHeight>fallWithoutDamage)
+                if (fallHeight > fallWithoutDamage)
+                {
                     hp -= Mathf.RoundToInt(Mathf.Abs(fallHeight * fallDamageMultiplayer));
+                    PlaySound(playerHit);
+                }
+                    
                 startFall = 0;
 
             }
         }
+
+        if (isGrounded) //Звуки шагов
+        {
+            if (Vector3.Distance(prevStep, transform.position) > 4&& Input.GetAxis("Sprint") == 0)
+            {
+               
+                SoundSysyem soundSysyem = new SoundSysyem();
+               
+                soundSysyem.PlaySound2D(steps[Random.Range(0, steps.Length)], transform.position);
+                prevStep = transform.position;
+            }
+            else if(Vector3.Distance(prevStep, transform.position) > 5)
+            {
+                SoundSysyem soundSysyem = new SoundSysyem();
+
+                soundSysyem.PlaySound2D(steps[Random.Range(0, steps.Length)], transform.position);
+                prevStep = transform.position;
+            }
+    }
          
 
          
@@ -270,6 +319,10 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            SoundSysyem soundSysyem = new SoundSysyem();
+
+            soundSysyem.PlaySound2D(jump, transform.position);
+            
 
         }
 
@@ -307,7 +360,12 @@ public class PlayerMove : MonoBehaviour
                            hit.transform.GetComponent<EnemyController>().MakeDamage(weaponSwitch.weapon.GetComponent<PistolShoot>().damage);
                            weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, false);
                        }
-                       else if (hit.transform.gameObject.layer == Mathf.Log(animalMask, 2))
+                       else if (hit.transform.gameObject.layer == Mathf.Log(armyMask, 2))
+                       {
+                           hit.transform.GetComponent<ArmyController>().MakeDamage(weaponSwitch.weapon.GetComponent<PistolShoot>().damage);
+                           weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, false);
+                       }
+                        else if (hit.transform.gameObject.layer == Mathf.Log(animalMask, 2))
                        {
                            hit.transform.GetComponent<AnimalController>().MakeDamage(weaponSwitch.weapon.GetComponent<PistolShoot>().damage);
                            weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, false);
@@ -349,8 +407,7 @@ public class PlayerMove : MonoBehaviour
                    if (MeleeHit(transformCamera, meleeDistance, woodMask, out hit))
                    {
 
-                       GetComponent<AudioSource>().clip = woodHit;
-                       GetComponent<AudioSource>().Play();
+                       PlaySound(woodHit);
                        print("Wood hit");
                        if (weaponSwitch.weapon.name == "Axe")
                        {
@@ -389,9 +446,8 @@ public class PlayerMove : MonoBehaviour
                    if (MeleeHit(transformCamera, meleeDistance, foodMask, out hit))
                    {
 
-                       GetComponent<AudioSource>().clip = woodHit;
-                       GetComponent<AudioSource>().Play();
-                       print("Food hit");
+                       PlaySound(woodHit);
+                        print("Food hit");
                        hit.transform.GetComponent<AnimalController>().deadHealth -= hitDamage;
 
                        int lootCount = eatLootPerHit;
@@ -426,19 +482,79 @@ public class PlayerMove : MonoBehaviour
                    }
                    if (MeleeHit(transformCamera, meleeDistance, animalMask, out hit))
                    {
-                       hit.transform.GetComponent<AnimalController>().MakeDamage(hitDamage / 4);
+                       PlaySound(woodHit);
+                        hit.transform.GetComponent<AnimalController>().MakeDamage(hitDamage / 4);
                    }
                     else if (MeleeHit(transformCamera, meleeDistance, enemyMask, out hit))
                    {
-                       hit.transform.GetComponent<EnemyController>().MakeDamage(hitDamage/4);
+                       PlaySound(woodHit);
+                        hit.transform.GetComponent<EnemyController>().MakeDamage(hitDamage/4);
                    }
                     else if (MeleeHit(transformCamera, meleeDistance, armyMask, out hit))
                     {
+                        PlaySound(woodHit);
                         hit.transform.GetComponent<ArmyController>().MakeDamage(hitDamage / 4);
+
                     }
+                   else if (MeleeHit(transformCamera, meleeDistance, armyLootMask, out hit))
+                   {
+                       PlaySound(woodHit);
+
+                        hit.transform.GetComponent<ColiderArmy>().MakeDamage(hitDamage / 4);
+                       print(weaponSwitch.maxWeapons);
+                       int rand = Random.Range(1, 6);
+                       
+                       switch (rand)
+                       {
+                           case 1:
+                           {
+                               bool exist = false;
+                               var a = weaponSwitch.WeaponNames();
+                               foreach (var item in a)
+                               {
+                                   if (item == "Pistol")
+                                       exist = true;
+                               }
+                               if(!exist)
+                                    CreateLoot(pistolLoot);
+                               break;
+                           }
+                           case 2:
+                           {
+                               bool exist = false;
+                               var a = weaponSwitch.WeaponNames();
+                               foreach (var item in a)
+                               {
+                                   if (item == "Knife")
+                                       exist = true;
+                               }
+                               if (!exist)
+                                        CreateLoot(knifeLoot);
+                               break;
+                           }
+                           case 3:
+                           {
+                                    CreateLoot(pigLoot,20);
+                               break;
+                           }
+                           case 4:
+                           {
+                               CreateLoot(waterLoot, 40);
+                               break;
+                           }
+                           case 5:
+                           {
+                               CreateLoot(ammoLoot, Random.Range(2,13));
+                               break;
+                           }
+
+                        }
+
+                   }
                     else
                    {
-                       print("not Hit");
+                       PlaySound(notHit);
+                        print("not Hit");
                    }
                }
 
@@ -478,7 +594,7 @@ public class PlayerMove : MonoBehaviour
     }
 
     /// <summary>
-    /// Создание лута
+    /// Создание лута с колличеством
     /// </summary>
     /// <param name="item">Предмет для создания</param>
     /// <param name="count">Количество лута в предмете</param>
@@ -488,6 +604,19 @@ public class PlayerMove : MonoBehaviour
         Physics.Raycast(transformCamera.position, transformCamera.forward, out hit, 255f);
         Instantiate(item, hit.point, Quaternion.identity).GetComponent<Loot>().count = count;
         
+    }
+
+
+    /// <summary>
+    /// Создание лута одиночного педмета
+    /// </summary>
+    /// <param name="item"></param>
+    public void CreateLoot(GameObject item)
+    {
+        RaycastHit hit;
+        Physics.Raycast(transformCamera.position, transformCamera.forward, out hit, 255f);
+        Instantiate(item, hit.point, Quaternion.identity);
+
     }
     private void OnGUI()
     {
@@ -503,6 +632,16 @@ public class PlayerMove : MonoBehaviour
     public void TakeDamage(int damage)
     {
         hp -= damage;
+        PlaySound(playerHit);
+        StartCoroutine(TraumaInducer.Shake());
+
+
+    }
+
+    public void PlaySound(AudioClip sound)
+    {
+        SoundSysyem soundSysyem = new SoundSysyem();
+        soundSysyem.PlaySound(sound, transform.position);
     }
 
    

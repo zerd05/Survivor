@@ -29,7 +29,9 @@ public class AnimalController : MonoBehaviour
 
 
     [Header("Sounds")]
-    public AudioClip[] hitAudioClips;
+    public AudioClip hitAudioClip;
+
+    public AudioClip WalkAudioClip;
 
     private NavMeshAgent agent;
     private Vector3 wanderPoint;
@@ -46,10 +48,17 @@ public class AnimalController : MonoBehaviour
         timeToChange = Time.time;
 
     }
+    public void PlaySound(AudioClip sound)
+    {
+        SoundSysyem soundSysyem = new SoundSysyem();
+        soundSysyem.PlaySound(sound, transform.position);
+    }
 
 
     public void MakeDamage(int damage)
     {
+
+        PlaySound(hitAudioClip);
         if (Health <= 0)
         {
             

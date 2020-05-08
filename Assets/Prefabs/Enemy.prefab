@@ -111,6 +111,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5cd921b91deac4f47b05c451951f7a53, type: 3}
   - {fileID: 8300000, guid: a4366158371c9514cae30cfff454dcb2, type: 3}
   - {fileID: 8300000, guid: fc1882cb9cb0d474c95537bbdb4c48bd, type: 3}
+  attackSound: {fileID: 8300000, guid: f12305541633e1d4bb4b68f662dffb48, type: 3}
 --- !u!95 &7988914108842985164
 Animator:
   serializedVersion: 3
