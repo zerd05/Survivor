@@ -1,0 +1,1117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &180137881397649671
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2579677974823103689}
+  m_Layer: 0
+  m_Name: PIG_ L UpperArm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2579677974823103689
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180137881397649671}
+  m_LocalRotation: {x: -0.47295785, y: -0.44577855, z: 0.22438447, w: 0.7261157}
+  m_LocalPosition: {x: -0.196152, y: 0.000000038146972, z: 0.000000009536743}
+  m_LocalScale: {x: 1, y: 0.9999999, z: 1.0000001}
+  m_Children:
+  - {fileID: 7838867716384820883}
+  m_Father: {fileID: 2256505890872555459}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -2.3082957, y: -51.157104, z: 114.11686}
+--- !u!1 &637696408393161028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1172780820559797951}
+  m_Layer: 0
+  m_Name: PIG_ Spine1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1172780820559797951
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637696408393161028}
+  m_LocalRotation: {x: 2.2737368e-13, y: 1.2601031e-13, z: -2.8651428e-26, w: 1}
+  m_LocalPosition: {x: -0.24660622, y: -0.00019638061, z: -5.442416e-10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3750164137416688310}
+  m_Father: {fileID: 759404277578214387}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: -0.0000017075831, y: 0.00000021344789, z: 0.000000053361973}
+--- !u!1 &649261477408260524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8162664767241039278}
+  m_Layer: 0
+  m_Name: PIG_ Neck2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8162664767241039278
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649261477408260524}
+  m_LocalRotation: {x: 9.101379e-14, y: 0.00000014310316, z: -0.05159472, w: 0.99866813}
+  m_LocalPosition: {x: -0.106943265, y: -0.000084686275, z: -2.3515895e-10}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
+  m_Children:
+  - {fileID: 6057534330487309311}
+  m_Father: {fileID: 1059393719631625953}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -2.7464066, y: -3.512888, z: 29.932766}
+--- !u!1 &1254576263536363331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1819422242296813308}
+  m_Layer: 0
+  m_Name: PIG_ R Calf
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1819422242296813308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254576263536363331}
+  m_LocalRotation: {x: 1.5162486e-13, y: -5.3472417e-14, z: 0.43167907, w: 0.90202725}
+  m_LocalPosition: {x: -0.3084445, y: -0.000000038146972, z: 0}
+  m_LocalScale: {x: 0.9999999, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1648356544176789249}
+  m_Father: {fileID: 157295587749256007}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.0000028528807, y: 0.000003935327, z: 38.45677}
+--- !u!1 &1806121918601262846
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3408094105590334701}
+  - component: {fileID: 6528824623005137270}
+  - component: {fileID: 1806121918601262840}
+  - component: {fileID: 1806121918601262841}
+  - component: {fileID: 1806121918601262842}
+  - component: {fileID: 1806121918601262843}
+  - component: {fileID: 1806121918601262844}
+  - component: {fileID: 1806121918601262845}
+  m_Layer: 16
+  m_Name: PIG
+  m_TagString: Pig
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3408094105590334701
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806121918601262846}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 38.893272, y: 0.93072176, z: 56.862053}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6022939246510114086}
+  - {fileID: 2708317237550325170}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!111 &6528824623005137270
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806121918601262846}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 1827226128182048838, guid: a994a28ba7b2ecb42af973f29aedac28,
+    type: 3}
+  m_Animations:
+  - {fileID: 1827226128182048838, guid: a994a28ba7b2ecb42af973f29aedac28, type: 3}
+  - {fileID: 1827226128182048838, guid: 3f193f5aca5245a4a981fbe204de8f21, type: 3}
+  - {fileID: 1827226128182048838, guid: 76281b4dc2384a0468b25cb3875d01e1, type: 3}
+  - {fileID: 1827226128182048838, guid: dc7393191d16c79449ab3d4633116607, type: 3}
+  - {fileID: 1827226128182048838, guid: fc583c79e384f75459154c03bdfc59c0, type: 3}
+  - {fileID: 1827226128182048838, guid: 93f93ad5d12087a4a9878de1229ea1e6, type: 3}
+  - {fileID: 1827226128182048838, guid: 8585764472b90aa48aa6a0d55791b981, type: 3}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 1
+--- !u!114 &1806121918601262840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806121918601262846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8355cc4ed1d40c4f8daa9f78050ff67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 80
+  deadHealth: 300
+  layerAfterDeath:
+    serializedVersion: 2
+    m_Bits: 131072
+  animator: {fileID: 1806121918601262843}
+  wanderRadius: 7
+  wanderSpeed: 4
+  runSpeed: 2
+  hitAudioClip: {fileID: 8300000, guid: c1f8ed4c3961ed84c8748182dda286d9, type: 3}
+  WalkAudioClip: {fileID: 0}
+--- !u!54 &1806121918601262841
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806121918601262846}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!195 &1806121918601262842
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806121918601262846}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.74
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.93
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!95 &1806121918601262843
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806121918601262846}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d6e45d76d6daa5445add2362de3b000e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &1806121918601262844
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806121918601262846}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.77
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.47, z: 0}
+--- !u!65 &1806121918601262845
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806121918601262846}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1.0956726, y: 0.5278559, z: 1.2807388}
+  m_Center: {x: 0.047836304, y: 0.23607206, z: -0.14036942}
+--- !u!1 &1810371121675297554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 759404277578214387}
+  m_Layer: 0
+  m_Name: PIG_ Spine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &759404277578214387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810371121675297554}
+  m_LocalRotation: {x: -0.0000020804762, y: 0.00000069367627, z: -0.00039815903, w: 0.99999994}
+  m_LocalPosition: {x: -0.2076469, y: -0.00019630432, z: 0.00000028823706}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2309827152686333280}
+  - {fileID: 157295587749256007}
+  - {fileID: 1172780820559797951}
+  m_Father: {fileID: 5131957141785227191}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.0002372875, y: 0.00007724207, z: -0.04562252}
+--- !u!1 &2147388895487024264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5330091536815882154}
+  m_Layer: 0
+  m_Name: PIG_ R Foot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5330091536815882154
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147388895487024264}
+  m_LocalRotation: {x: -0.0000006402734, y: 0.00000072816584, z: -0.030897116, w: 0.99952257}
+  m_LocalPosition: {x: -0.19565012, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 0.99999994, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1648356544176789249}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 22.803305, y: 3.5043662, z: 18.196672}
+--- !u!1 &2149896181157441576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3733501266371293471}
+  m_Layer: 0
+  m_Name: PIG_ L Finger0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3733501266371293471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2149896181157441576}
+  m_LocalRotation: {x: -0.00038902092, y: -0.21269313, z: 0.00008468039, w: 0.97711897}
+  m_LocalPosition: {x: -0.1986627, y: 0, z: 0}
+  m_LocalScale: {x: 0.99999976, y: 0.99999994, z: 0.9999997}
+  m_Children: []
+  m_Father: {fileID: 5470655431909523055}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 7.9562583, y: 7.3535614, z: 2.5395873}
+--- !u!1 &2164582910298212141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4640030372939716020}
+  m_Layer: 0
+  m_Name: PIG_ L Foot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4640030372939716020
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2164582910298212141}
+  m_LocalRotation: {x: 0.0000007276544, y: -0.00000073086693, z: -0.030897116, w: 0.99952257}
+  m_LocalPosition: {x: -0.19565013, y: 0.000000038146972, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 0.99999994, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2325584344695016439}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 38.880768, y: 14.139258, z: 24.904764}
+--- !u!1 &2435875371898371891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3750164137416688310}
+  m_Layer: 0
+  m_Name: PIG_ Neck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3750164137416688310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2435875371898371891}
+  m_LocalRotation: {x: 6.257878e-14, y: 0.00000040775757, z: -0.14701381, w: 0.98913443}
+  m_LocalPosition: {x: -0.24013665, y: 0.028284378, z: 0.00000007845025}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2256505890872555459}
+  - {fileID: 1059393719631625953}
+  - {fileID: 3744388834387730875}
+  m_Father: {fileID: 1172780820559797951}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -3.9407616, y: -7.958481, z: 30.688288}
+--- !u!1 &3764645490804480609
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1648356544176789249}
+  m_Layer: 0
+  m_Name: PIG_ R HorseLink
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1648356544176789249
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3764645490804480609}
+  m_LocalRotation: {x: -3.8756905e-13, y: -1.4010291e-13, z: -0.4024005, w: 0.91546375}
+  m_LocalPosition: {x: -0.17376682, y: 0, z: 0}
+  m_LocalScale: {x: 0.99999994, y: 1.0000001, z: 1}
+  m_Children:
+  - {fileID: 5330091536815882154}
+  m_Father: {fileID: 1819422242296813308}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.0000036467036, y: -0.0000026151633, z: -60.991627}
+--- !u!1 &4103026356706544311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6810679477094205912}
+  m_Layer: 0
+  m_Name: PIG_ R Forearm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6810679477094205912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4103026356706544311}
+  m_LocalRotation: {x: 9.154554e-10, y: 0.000000016239069, z: 0.34861815, w: 0.93726486}
+  m_LocalPosition: {x: -0.19993983, y: 0.000000019073486, z: -0.000000019073486}
+  m_LocalScale: {x: 0.9999998, y: 1, z: 0.99999994}
+  m_Children:
+  - {fileID: 7531547123096470630}
+  m_Father: {fileID: 7335380884263465344}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.0000006497693, y: -0.0000024123708, z: 35.057922}
+--- !u!1 &4206006594150652808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2708317237550325170}
+  m_Layer: 0
+  m_Name: PIG_
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2708317237550325170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4206006594150652808}
+  m_LocalRotation: {x: 0.00000155359, y: 0.00000155359, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0.6871921, z: -0.47}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5131957141785227191}
+  m_Father: {fileID: 3408094105590334701}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -1.625609, y: 1.4153485, z: -15.929811}
+--- !u!1 &4358432207151156952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7335380884263465344}
+  m_Layer: 0
+  m_Name: PIG_ R UpperArm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7335380884263465344
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4358432207151156952}
+  m_LocalRotation: {x: 0.47295788, y: 0.4457785, z: 0.22438447, w: 0.7261157}
+  m_LocalPosition: {x: -0.19615203, y: -0.000000076293944, z: 0.000000009536743}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+  m_Children:
+  - {fileID: 6810679477094205912}
+  m_Father: {fileID: 3744388834387730875}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 60.102825, y: 68.655, z: 65.94151}
+--- !u!1 &5024384477604608532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3744388834387730875}
+  m_Layer: 0
+  m_Name: PIG_ R Clavicle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3744388834387730875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5024384477604608532}
+  m_LocalRotation: {x: 0.62618417, y: -0.17474979, z: 0.6886721, w: -0.3210711}
+  m_LocalPosition: {x: 0.006749897, y: -0.044406433, z: -0.084028035}
+  m_LocalScale: {x: 1, y: 1, z: 1.0000001}
+  m_Children:
+  - {fileID: 7335380884263465344}
+  m_Father: {fileID: 3750164137416688310}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 38.153206, y: 89.366486, z: -136.93117}
+--- !u!1 &5024702763509542200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 157295587749256007}
+  m_Layer: 0
+  m_Name: PIG_ R Thigh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &157295587749256007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5024702763509542200}
+  m_LocalRotation: {x: 0.70831627, y: -0.70589525, z: -0.0000010125874, w: -0.000001949088}
+  m_LocalPosition: {x: 0.20764664, y: 0.00036216734, z: -0.18065147}
+  m_LocalScale: {x: 0.99999994, y: 1.0000001, z: 1}
+  m_Children:
+  - {fileID: 1819422242296813308}
+  m_Father: {fileID: 759404277578214387}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 14.0269985, y: -179.90927, z: -71.555786}
+--- !u!1 &5199175560898143500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5697880765159373697}
+  m_Layer: 0
+  m_Name: PIG_ L Calf
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5697880765159373697
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5199175560898143500}
+  m_LocalRotation: {x: -1.5949775e-13, y: 3.3328307e-13, z: 0.43167907, w: 0.90202725}
+  m_LocalPosition: {x: -0.30844456, y: -0.000000038146972, z: 0}
+  m_LocalScale: {x: 0.9999999, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2325584344695016439}
+  m_Father: {fileID: 2309827152686333280}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.000006477522, y: -0.0000021668352, z: 71.50408}
+--- !u!1 &5293794189636575998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4130528740704367617}
+  m_Layer: 0
+  m_Name: PIG_ R Finger0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4130528740704367617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5293794189636575998}
+  m_LocalRotation: {x: 0.00038902197, y: 0.21269311, z: 0.0000846821, w: 0.97711897}
+  m_LocalPosition: {x: -0.19866268, y: -0.000000009536743, z: -0.000000019073486}
+  m_LocalScale: {x: 0.99999964, y: 0.99999994, z: 0.99999964}
+  m_Children: []
+  m_Father: {fileID: 7531547123096470630}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 13.080944, y: 23.733244, z: 7.0936985}
+--- !u!1 &5814326465153568650
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1747379916153365044}
+  m_Layer: 0
+  m_Name: PIG_ Queue de cheval 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1747379916153365044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5814326465153568650}
+  m_LocalRotation: {x: 2.000161e-12, y: 0.0000020109478, z: -0.725032, w: 0.6887152}
+  m_LocalPosition: {x: 0.08831436, y: 0.1774519, z: 0.00000039244506}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6057534330487309311}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.00020998767, y: 0.00014933801, z: -109.83732}
+--- !u!1 &6096596630086443439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1059393719631625953}
+  m_Layer: 0
+  m_Name: PIG_ Neck1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1059393719631625953
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6096596630086443439}
+  m_LocalRotation: {x: -1.4859753e-14, y: 0.00000014310332, z: -0.051594727, w: 0.99866813}
+  m_LocalPosition: {x: -0.10694322, y: -0.00008476257, z: -2.35741e-10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8162664767241039278}
+  m_Father: {fileID: 3750164137416688310}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -13.434879, y: -3.1419737, z: 28.462234}
+--- !u!1 &6171693752105056034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2256505890872555459}
+  m_Layer: 0
+  m_Name: PIG_ L Clavicle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2256505890872555459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6171693752105056034}
+  m_LocalRotation: {x: -0.62618506, y: 0.17474788, z: 0.6886726, w: -0.32106933}
+  m_LocalPosition: {x: 0.0067498777, y: -0.04440689, z: 0.08402778}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2579677974823103689}
+  m_Father: {fileID: 3750164137416688310}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -35.295246, y: -68.65906, z: -155.14005}
+--- !u!1 &6184269477494202023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7838867716384820883}
+  m_Layer: 0
+  m_Name: PIG_ L Forearm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7838867716384820883
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6184269477494202023}
+  m_LocalRotation: {x: -0.000000012220543, y: -0.0000000045454636, z: 0.34861815,
+    w: 0.93726486}
+  m_LocalPosition: {x: -0.1999398, y: -0.000000009536743, z: 0}
+  m_LocalScale: {x: 0.9999998, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5470655431909523055}
+  m_Father: {fileID: 2579677974823103689}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.000002550466, y: -0.000005128192, z: 0.12194486}
+--- !u!1 &6284620231684572290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5131957141785227191}
+  m_Layer: 0
+  m_Name: PIG_ Pelvis
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5131957141785227191
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6284620231684572290}
+  m_LocalRotation: {x: -0.49999967, y: 0.50000036, z: 0.49999967, w: 0.50000036}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 759404277578214387}
+  m_Father: {fileID: 2708317237550325170}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
+--- !u!1 &6327219102889172829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2309827152686333280}
+  m_Layer: 0
+  m_Name: PIG_ L Thigh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2309827152686333280
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6327219102889172829}
+  m_LocalRotation: {x: 0.70831627, y: -0.70589525, z: -0.0000010461456, w: 0.00000008538436}
+  m_LocalPosition: {x: 0.20764664, y: 0.00036125182, z: 0.18065143}
+  m_LocalScale: {x: 0.99999994, y: 1.0000001, z: 1}
+  m_Children:
+  - {fileID: 5697880765159373697}
+  m_Father: {fileID: 759404277578214387}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 6.695457, y: -143.23592, z: -72.48288}
+--- !u!1 &6404493389258983626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2325584344695016439}
+  m_Layer: 0
+  m_Name: PIG_ L HorseLink
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2325584344695016439
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6404493389258983626}
+  m_LocalRotation: {x: 2.5054042e-13, y: -4.8034856e-14, z: -0.4024005, w: 0.91546375}
+  m_LocalPosition: {x: -0.17376678, y: 0, z: -0.000000019073486}
+  m_LocalScale: {x: 0.99999994, y: 1.0000001, z: 1}
+  m_Children:
+  - {fileID: 4640030372939716020}
+  m_Father: {fileID: 5697880765159373697}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.000005088956, y: 0.0000018057958, z: -37.972008}
+--- !u!1 &7197922498396528326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6022939246510114086}
+  - component: {fileID: 6938053551967219163}
+  m_Layer: 0
+  m_Name: PIG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6022939246510114086
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7197922498396528326}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0.0000001734575, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3408094105590334701}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &6938053551967219163
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7197922498396528326}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 339f239e3bef7694e837dce3c95cbcf9, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 4300000, guid: a994a28ba7b2ecb42af973f29aedac28, type: 3}
+  m_Bones:
+  - {fileID: 759404277578214387}
+  - {fileID: 1172780820559797951}
+  - {fileID: 3750164137416688310}
+  - {fileID: 5131957141785227191}
+  - {fileID: 2256505890872555459}
+  - {fileID: 3744388834387730875}
+  - {fileID: 1059393719631625953}
+  - {fileID: 6057534330487309311}
+  - {fileID: 2579677974823103689}
+  - {fileID: 7335380884263465344}
+  - {fileID: 8162664767241039278}
+  - {fileID: 7838867716384820883}
+  - {fileID: 6810679477094205912}
+  - {fileID: 1747379916153365044}
+  - {fileID: 5470655431909523055}
+  - {fileID: 7531547123096470630}
+  - {fileID: 2708317237550325170}
+  - {fileID: 2309827152686333280}
+  - {fileID: 157295587749256007}
+  - {fileID: 3733501266371293471}
+  - {fileID: 5697880765159373697}
+  - {fileID: 1819422242296813308}
+  - {fileID: 4640030372939716020}
+  - {fileID: 5330091536815882154}
+  - {fileID: 1648356544176789249}
+  - {fileID: 2325584344695016439}
+  - {fileID: 4130528740704367617}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 2708317237550325170}
+  m_AABB:
+    m_Center: {x: -0.17833167, y: 0.03406641, z: 0.44077188}
+    m_Extent: {x: 0.73475987, y: 0.88989747, z: 1.0973854}
+  m_DirtyAABB: 0
+--- !u!1 &8923857967801240270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7531547123096470630}
+  m_Layer: 0
+  m_Name: PIG_ R Hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7531547123096470630
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8923857967801240270}
+  m_LocalRotation: {x: 0.7160225, y: -0.021197818, z: 0.08212626, w: 0.6929053}
+  m_LocalPosition: {x: -0.13558012, y: 0.000000009536743, z: 0.000000019073486}
+  m_LocalScale: {x: 1, y: 1, z: 1.0000001}
+  m_Children:
+  - {fileID: 4130528740704367617}
+  m_Father: {fileID: 6810679477094205912}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 70.95337, y: -102.8264, z: -107.80531}
+--- !u!1 &9176249107425796769
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5470655431909523055}
+  m_Layer: 0
+  m_Name: PIG_ L Hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5470655431909523055
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9176249107425796769}
+  m_LocalRotation: {x: -0.7160225, y: 0.021197835, z: 0.08212625, w: 0.6929053}
+  m_LocalPosition: {x: -0.13558012, y: 0, z: -0.000000009536743}
+  m_LocalScale: {x: 1, y: 1.0000001, z: 1}
+  m_Children:
+  - {fileID: 3733501266371293471}
+  m_Father: {fileID: 7838867716384820883}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -56.177326, y: 127.92446, z: -130.42397}
+--- !u!1 &9216878581232863531
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6057534330487309311}
+  m_Layer: 0
+  m_Name: PIG_ Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6057534330487309311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216878581232863531}
+  m_LocalRotation: {x: -1.3516313e-12, y: -0.0000016828612, z: 0.6067429, w: 0.7948981}
+  m_LocalPosition: {x: -0.1503445, y: -0.02588768, z: -0.00000014180172}
+  m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
+  m_Children:
+  - {fileID: 1747379916153365044}
+  m_Father: {fileID: 8162664767241039278}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -3.5758033, y: 17.788183, z: 32.22612}

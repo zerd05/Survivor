@@ -12,6 +12,7 @@ public class PistolShoot : MonoBehaviour
     public AudioClip clickSound;
     public AudioClip reloadSound;
     public GameObject BulletHole;
+
     public int damage = 35;
 
     public int maxBullets = 7;
@@ -37,7 +38,7 @@ public class PistolShoot : MonoBehaviour
             a.GetComponent<AudioSource>().Play();
             a.AddComponent<AutoRemove>();
             if (hole)
-                Instantiate(BulletHole, hit.point, Quaternion.LookRotation(hit.normal));
+                Instantiate(BulletHole, hit.point, Quaternion.LookRotation(hit.normal),hit.transform);
 
             return true;
 

@@ -34,6 +34,8 @@ public class EnemyController : MonoBehaviour
     [Header("Sounds")]
     public AudioClip[] hitAudioClips;
 
+    public AudioClip attackSound;
+
 
 
 
@@ -172,7 +174,9 @@ public class EnemyController : MonoBehaviour
             target.GetComponent<PlayerMove>().TakeDamage(20);
             //target.GetComponent<PlayerMove>().Kick(transform.forward * 150f + new Vector3(0, 150, 0));
         }
-        
+        SoundSysyem sounds = new SoundSysyem();
+
+        sounds.PlaySound(attackSound, transform.position);
     }
 
 

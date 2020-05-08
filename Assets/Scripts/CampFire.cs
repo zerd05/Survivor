@@ -5,8 +5,14 @@ using UnityEngine;
 public class CampFire : MonoBehaviour
 {
     private Transform player;
+    public AudioClip startSound;
+
     void Start()
     {
+
+        SoundSysyem soundSysyem = new SoundSysyem();
+        soundSysyem.PlaySound(startSound,transform.position);
+
         player = PlayerManager.instance.player.transform;
 
 

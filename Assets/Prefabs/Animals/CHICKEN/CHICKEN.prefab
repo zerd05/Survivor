@@ -247,7 +247,8 @@ MonoBehaviour:
   wanderRadius: 2
   wanderSpeed: 0.41
   runSpeed: 3.99
-  hitAudioClips: []
+  hitAudioClip: {fileID: 8300000, guid: 702eca2f8aba9fe4698659a14efafd40, type: 3}
+  WalkAudioClip: {fileID: 0}
 --- !u!1 &1508088433300514605
 GameObject:
   m_ObjectHideFlags: 0
