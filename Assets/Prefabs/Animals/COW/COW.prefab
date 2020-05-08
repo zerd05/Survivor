@@ -931,7 +931,7 @@ MonoBehaviour:
   animator: {fileID: 6817524744045739629}
   wanderRadius: 25.65
   wanderSpeed: 1.42
-  runSpeed: 6.41
+  runSpeed: 11.78
   hitAudioClip: {fileID: 8300000, guid: 397de47d080dbd44ca2ca892cc70f3b3, type: 3}
   WalkAudioClip: {fileID: 0}
 --- !u!136 &6817524744045739625
