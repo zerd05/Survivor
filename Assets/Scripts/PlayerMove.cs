@@ -1,10 +1,7 @@
 ﻿
-using System.Linq;
-using Boo.Lang;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
-using UnityScript.Lang;
+
 
 
 public class PlayerMove : MonoBehaviour
