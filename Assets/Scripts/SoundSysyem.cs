@@ -48,4 +48,12 @@ public class SoundSysyem : MonoBehaviour
         soundObject.GetComponent<AudioSource>().Play();
         soundObject.AddComponent<AutoRemove>();
     }
+    public void PlaySound2D(AudioClip sound, Vector3 position,float lifeTime)
+    {
+        GameObject soundObject = new GameObject("SoundObject");
+        soundObject.transform.position = position;
+        soundObject.AddComponent<AudioSource>().clip = sound;
+        soundObject.GetComponent<AudioSource>().Play();
+        soundObject.AddComponent<AutoRemove>().lifeTime = lifeTime;
+    }
 }

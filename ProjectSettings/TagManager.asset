@@ -21,6 +21,7 @@ TagManager:
   - Hand
   - PistolLoot
   - KnifeLoot
+  - WaterBig
   layers:
   - Default
   - TransparentFX
