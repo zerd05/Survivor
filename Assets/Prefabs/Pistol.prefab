@@ -264,6 +264,7 @@ MonoBehaviour:
   damage: 35
   maxBullets: 14
   bullets: 7
+  pistolNose: {fileID: 6071180313437854085}
 --- !u!82 &5626008458824372138
 AudioSource:
   m_ObjectHideFlags: 0
@@ -476,6 +477,12 @@ PrefabInstance:
     - {fileID: 1763681195315610280, guid: 3bc05528f3f6ddc44934a9c30b33c8e7, type: 3}
     - {fileID: 4311872377275941999, guid: 3bc05528f3f6ddc44934a9c30b33c8e7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3bc05528f3f6ddc44934a9c30b33c8e7, type: 3}
+--- !u!1 &6071180313437854085 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 265281409966697356, guid: 3bc05528f3f6ddc44934a9c30b33c8e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 6336373762054337033}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1130020633819416534 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6359629796593481183, guid: 3bc05528f3f6ddc44934a9c30b33c8e7,

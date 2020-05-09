@@ -1,4 +1,5 @@
 ﻿
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,8 @@ using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
+    [HideInInspector]
+    public Vector3 loadPosition;
 
     public CharacterController controller;
 
@@ -53,7 +56,7 @@ public class PlayerMove : MonoBehaviour
 
     [Header("Ресурсы")]
     public int woodCount = 0;               //Количество дерева
-    public int bulletCount;
+    public int bulletCount = 0;
     public int rockCount = 0;
 
 
@@ -119,6 +122,12 @@ public class PlayerMove : MonoBehaviour
     private bool isCampFireActive;
     private bool drawGUI;
     private Vector3 prevStep;
+
+    public bool havePistol;
+
+    public bool haveKnife;
+
+    private int fr = 0;
     public void CampFireActive(bool status)
     {
         isCampFireActive = status;
@@ -126,6 +135,22 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         prevStep = transform.position;
+
+        
+            
+        
+    }
+
+    private bool endLoad = false;
+    void LateUpdate()
+    {
+        LoadInfo.isLoadGame = true;
+        if (LoadInfo.isLoadGame && endLoad)
+        {
+            transform.position = loadPosition;
+            
+            endLoad = false;
+        }
     }
 
     void FixedUpdate()
@@ -167,7 +192,7 @@ public class PlayerMove : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+
     void Update()
     {
 
@@ -234,7 +259,7 @@ public class PlayerMove : MonoBehaviour
 
 
 
-        woodText.text = "Дерево: " + woodCount.ToString()+"\nКамень: "+rockCount.ToString()  +"\nЗдоровье: "+hp.ToString();
+        woodText.text = "Дерево: " + woodCount.ToString()+"\nКамень: "+rockCount.ToString()  +"\nЗагружено: "+LoadInfo.isLoadGame.ToString();
         if (weaponSwitch.weapon.name == "Pistol")
         {
             ammoText.text = weaponSwitch.weapon.GetComponent<PistolShoot>().bullets+"/"+bulletCount;
@@ -289,7 +314,7 @@ public class PlayerMove : MonoBehaviour
                 soundSysyem.PlaySound2D(steps[Random.Range(0, steps.Length)], transform.position,1f);
                 prevStep = transform.position;
             }
-    }
+        }
          
 
          
@@ -358,6 +383,8 @@ public class PlayerMove : MonoBehaviour
            RaycastHit hit;
            if (weaponSwitch.weapon.name == "Pistol")  //Выстрел с пистолета
            {
+               
+
                if (weaponSwitch.weapon.GetComponent<PistolShoot>().CanShot())
                {
                    
@@ -584,13 +611,14 @@ public class PlayerMove : MonoBehaviour
           
 
         }
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
+
+            SaveSystem.SavePlayer(this);
             RaycastHit hit;
             Physics.Raycast(transformCamera.position, transformCamera.forward, out hit, 1231f);
             Instantiate(enemy, hit.point, Quaternion.identity);
-
-           // animator.Play("Lhit");
+            // animator.Play("Lhit");
         }
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -612,6 +640,23 @@ public class PlayerMove : MonoBehaviour
        
 
     }
+
+
+    /// <summary>
+    /// Обновление переменных для сохранения игры
+    /// </summary>
+    public void UpdateItemSave()
+    {
+        var a = weaponSwitch.WeaponNames();
+        foreach (var item in a)
+        {
+            if (item == "Knife")
+                haveKnife = true;
+            if (item == "Pistol")
+                havePistol = true;
+        }
+    }
+
 
     /// <summary>
     /// Создание лута с колличеством

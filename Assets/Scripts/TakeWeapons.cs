@@ -76,6 +76,15 @@ public class TakeWeapons : MonoBehaviour
 
     }
 
+    public void TakeKnife()
+    {
+        Instantiate(knifePrefab, hand.transform).name = "Knife";
+    }
+
+    public void TakePistol()
+    {
+        Instantiate(pistolPrefab, hand.transform).name = "Pistol";
+    }
     private void OnGUI()
     {
         if (drawGUI)
