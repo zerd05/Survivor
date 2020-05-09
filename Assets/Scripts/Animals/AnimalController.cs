@@ -42,7 +42,8 @@ public class AnimalController : MonoBehaviour
 
     void Start()
     {
-        target = PlayerManager.instance.player.transform;
+        
+        
         agent = GetComponent<NavMeshAgent>();
         wanderPoint = RandomWanderPoint();
         timeToChange = Time.time;
@@ -102,8 +103,14 @@ public class AnimalController : MonoBehaviour
 
     void Update()
     {
+        if (target == null)
+        {
+            if(PlayerManager.instance.player!=null)
+            target = PlayerManager.instance.player.transform;
+            return;
+        }
 
-        if(deadHealth<=0)
+        if (deadHealth<=0)
             Destroy(gameObject);
 
 

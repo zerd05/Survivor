@@ -18,11 +18,20 @@ public class PlaceItems : MonoBehaviour
 
     void Start()
     {
-        player = PlayerManager.instance.player.transform;
-        playerMove = player.GetComponent<PlayerMove>();
+        if(PlayerManager.instance.player!=null)
+        {
+            player = PlayerManager.instance.player.transform;
+            playerMove = player.GetComponent<PlayerMove>();
+        }
     }
     void Update()
     {
+        if (this.player == null)
+        {
+            Start();
+            return;
+        }
+            
         Destroy(prev);
         GameObject player = PlayerManager.instance.player;
 

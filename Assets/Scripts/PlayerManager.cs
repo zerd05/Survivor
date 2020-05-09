@@ -12,4 +12,10 @@ public class PlayerManager : MonoBehaviour
     }
 
     public GameObject player;
+
+    void Update()
+    {
+        if(player==null)
+            player = GameObject.FindWithTag("Player");
+    }
 }

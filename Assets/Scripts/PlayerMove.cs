@@ -136,22 +136,21 @@ public class PlayerMove : MonoBehaviour
     {
         prevStep = transform.position;
 
-        
-            
-        
+
+
     }
 
-    private bool endLoad = false;
-    void LateUpdate()
-    {
-        LoadInfo.isLoadGame = true;
-        if (LoadInfo.isLoadGame && endLoad)
-        {
-            transform.position = loadPosition;
+    //private bool endLoad = false;
+    //void LateUpdate()
+    //{
+    //    LoadInfo.isLoadGame = true;
+    //    if (LoadInfo.isLoadGame && endLoad)
+    //    {
+    //        transform.position = loadPosition;
             
-            endLoad = false;
-        }
-    }
+    //        endLoad = false;
+    //    }
+    //}
 
     void FixedUpdate()
     {
@@ -259,14 +258,14 @@ public class PlayerMove : MonoBehaviour
 
 
 
-        woodText.text = "Дерево: " + woodCount.ToString()+"\nКамень: "+rockCount.ToString()  +"\nЗагружено: "+LoadInfo.isLoadGame.ToString();
+        GameObject.FindGameObjectWithTag("woodText").GetComponent<Text>().text = "Дерево: " + woodCount.ToString()+"\nКамень: "+rockCount.ToString()  +"\nЗагружено: "+LoadInfo.isLoadGame.ToString();
         if (weaponSwitch.weapon.name == "Pistol")
         {
-            ammoText.text = weaponSwitch.weapon.GetComponent<PistolShoot>().bullets+"/"+bulletCount;
+            GameObject.FindGameObjectWithTag("ammoText").GetComponent<Text>().text = weaponSwitch.weapon.GetComponent<PistolShoot>().bullets+"/"+bulletCount;
         }
         else
         {
-            ammoText.text = "";
+            GameObject.FindGameObjectWithTag("ammoText").GetComponent<Text>().text = "";
         }
 
 
@@ -690,9 +689,12 @@ public class PlayerMove : MonoBehaviour
     }
     public void UpdateBars()
     {
-        hpBar.GetComponent<SimpleHealthBar>().UpdateBar(hp,100);
-        eatBar.GetComponent<SimpleHealthBar>().UpdateBar(eat,100);
-        waterBar.GetComponent<SimpleHealthBar>().UpdateBar(water, 100);
+        GameObject.FindGameObjectWithTag("hpBar").GetComponent<SimpleHealthBar>().UpdateBar(hp, 100);
+        GameObject.FindGameObjectWithTag("eatBar").GetComponent<SimpleHealthBar>().UpdateBar(eat, 100);
+        GameObject.FindGameObjectWithTag("waterBar").GetComponent<SimpleHealthBar>().UpdateBar(water, 100);
+        //hpBar.GetComponent<SimpleHealthBar>().UpdateBar(hp,100);
+        //eatBar.GetComponent<SimpleHealthBar>().UpdateBar(eat,100);
+        //waterBar.GetComponent<SimpleHealthBar>().UpdateBar(water, 100);
     }
     public void TakeDamage(int damage)
     {
