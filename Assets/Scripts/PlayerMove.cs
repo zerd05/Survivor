@@ -37,7 +37,8 @@ public class PlayerMove : MonoBehaviour
     public LayerMask rockMask;               //Слой камней
     public LayerMask animalMask;             //Слой животных
     public LayerMask foodMask;               //Слой еды
-    public LayerMask armyLootMask;           //Слой мертвого солдата
+    public LayerMask armyLootMask;   //Слой мертвого солдата
+    public LayerMask waterLayer;
     [Space]             
     public int hitDamage = 50;               //Урон от удара
 
@@ -130,7 +131,7 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate()
     {
        
-
+        //Система еды
         if (eat < 0)
             eat = 0;
         eat -= 0.001f;
@@ -143,11 +144,21 @@ public class PlayerMove : MonoBehaviour
             water -= 0.01f;
         }
         
-        if (hp < 100 && water > 0 && eat > 0)
+        if (hp < 100 && water > 80 && eat > 90)
         {
             hp += 0.01f;
+           
+        }
+
+        if (hp < 100 && water > 30 && eat > 20)
+        {
             if (isCampFireActive)
                 hp += 0.1f;
+        }
+
+        if (water <= 0 || eat <= 0)
+        {
+            hp -= 0.01f;
         }
 
         if (hp > 100)
@@ -203,9 +214,16 @@ public class PlayerMove : MonoBehaviour
                         water = 100;
                     PlaySound(drinkSound);
                 }
+                if (ray.transform.tag == "WaterBig")
+                {
+                    water += 25;
+                    if (water > 100)
+                        water = 100;
+                    PlaySound(drinkSound);
+                }
 
-                
-                Destroy(ray.transform.gameObject);
+                if (ray.transform.tag != "WaterBig")
+                    Destroy(ray.transform.gameObject);
 
             }
         }
@@ -260,15 +278,15 @@ public class PlayerMove : MonoBehaviour
             {
                
                 SoundSysyem soundSysyem = new SoundSysyem();
-               
-                soundSysyem.PlaySound2D(steps[Random.Range(0, steps.Length)], transform.position);
+
+                soundSysyem.PlaySound2D(steps[Random.Range(0, steps.Length)], transform.position,1f);
                 prevStep = transform.position;
             }
             else if(Vector3.Distance(prevStep, transform.position) > 5)
             {
                 SoundSysyem soundSysyem = new SoundSysyem();
 
-                soundSysyem.PlaySound2D(steps[Random.Range(0, steps.Length)], transform.position);
+                soundSysyem.PlaySound2D(steps[Random.Range(0, steps.Length)], transform.position,1f);
                 prevStep = transform.position;
             }
     }
@@ -374,6 +392,11 @@ public class PlayerMove : MonoBehaviour
                            weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, true);
 
                        }
+                       else if(hit.transform.gameObject.layer == Mathf.Log(lootMask, 2))
+                       {
+                           Physics.Raycast(transformCamera.position, transformCamera.forward, out hit, 1231f, groundMask);
+                           weaponSwitch.weapon.GetComponent<PistolShoot>().Shot(hit, true);
+                        }
                        else
                        {
 
