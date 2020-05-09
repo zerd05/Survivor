@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class LoadGame : MonoBehaviour
 {
-    private Transform target;
+
+    public GameObject playerPrefab;
     void Start()
     {
-        target = PlayerManager.instance.player.transform;
+        //target = PlayerManager.instance.player.transform;
         if (LoadInfo.isLoadGame)
         {
             PlayerData playerData =  SaveSystem.LoadPlayer();
-            Vector3 position = new Vector3(playerData.position[0], playerData.position[1], playerData.position[2]);
             
-            PlayerMove playerMove = target.GetComponent<PlayerMove>();
+            Vector3 position = new Vector3(playerData.position[0], playerData.position[1], playerData.position[2]);
+            Quaternion rotation = new Quaternion(playerData.rotation[0], playerData.rotation[1], playerData.rotation[2], playerData.rotation[3]);
+            GameObject player =  Instantiate(playerPrefab, position, rotation);
+            PlayerMove playerMove = player.GetComponent<PlayerMove>();
             playerMove.controller.enabled = false;
             playerMove.loadPosition = position;
             playerMove.controller.enabled = true;
@@ -22,15 +25,20 @@ public class LoadGame : MonoBehaviour
             playerMove.woodCount = playerData.wood;
             playerMove.rockCount = playerData.rock;
             playerMove.bulletCount = playerData.bullets;
+            playerMove.water = playerData.water;
             if (playerData.havePistol)
             {
-                target.GetComponent<TakeWeapons>().TakePistol();
+                player.GetComponent<TakeWeapons>().TakePistol();
             }
             if (playerData.haveKnife)
             {
-                target.GetComponent<TakeWeapons>().TakeKnife();
+                player.GetComponent<TakeWeapons>().TakeKnife();
             }
             print(position);
+        }
+        else
+        {
+            
         }
     }
 }

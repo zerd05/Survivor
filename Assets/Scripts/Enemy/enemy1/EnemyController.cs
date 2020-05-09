@@ -41,7 +41,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        target = PlayerManager.instance.player.transform;
+      //  target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         wanderPoint = RandomWanderPoint();
 
@@ -86,7 +86,12 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-
+        if (target == null)
+        {
+            if (PlayerManager.instance.player != null)
+                target = PlayerManager.instance.player.transform;
+            return;
+        }
         animator.SetInteger("Health",Health);
 
         if (Health <= 0)

@@ -22,6 +22,11 @@ TagManager:
   - PistolLoot
   - KnifeLoot
   - WaterBig
+  - hpBar
+  - waterBar
+  - eatBar
+  - woodText
+  - ammoText
   layers:
   - Default
   - TransparentFX
