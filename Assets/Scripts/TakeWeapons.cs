@@ -7,7 +7,7 @@ public class TakeWeapons : MonoBehaviour
     private bool drawGUI = false;
     public LayerMask WeaponMask;
     private PlayerMove playerMove;
-    private GameObject hand;
+    public GameObject hand;
     public GameObject pistolPrefab;
     public GameObject knifePrefab;
 
@@ -19,7 +19,7 @@ public class TakeWeapons : MonoBehaviour
     void Start()
     {
         playerMove = GetComponent<PlayerMove>();
-        hand = GameObject.FindGameObjectWithTag("Hand");
+       // hand = GameObject.FindGameObjectWithTag("Hand");
 
     }
     void Update()
@@ -78,12 +78,15 @@ public class TakeWeapons : MonoBehaviour
 
     public void TakeKnife()
     {
+        print(knifePrefab);
+        print(hand);
         Instantiate(knifePrefab, hand.transform).name = "Knife";
     }
 
     public void TakePistol()
     {
-        Instantiate(pistolPrefab, hand.transform).name = "Pistol";
+        var a = Instantiate(pistolPrefab, hand.transform).name = "Pistol";
+        
     }
     private void OnGUI()
     {

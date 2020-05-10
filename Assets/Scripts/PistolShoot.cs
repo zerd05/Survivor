@@ -34,7 +34,7 @@ public class PistolShoot : MonoBehaviour
         if (bullets > 0)
         {
             bullets -= 1;
-            Instantiate(effect, pistolNose.transform).GetComponent<AutoRemove>().lifeTime = 12f;
+            Instantiate(effect, pistolNose.transform).GetComponent<AutoRemove>().lifeTime = 0.2f;
             GameObject a = new GameObject();
             a.AddComponent<AudioSource>().clip = BulletSound;
             a.GetComponent<AudioSource>().Play();

@@ -194,7 +194,8 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-
+        if(InGameMenu.IsPaused)
+            return;
 
 
         UpdateBars();
@@ -459,12 +460,20 @@ public class PlayerMove : MonoBehaviour
                        {
                            hit.transform.GetComponent<wood>().Hp -= hitDamage;
                            CreateLoot(woodLoot, hitDamage);
+                           if (hit.transform.GetComponent<wood>().Hp <= 0)
+                           {
+                               Destroy(hit.transform.parent.gameObject);
+                           }
                        }
                        else
                        {
                            hit.transform.GetComponent<wood>().Hp -= hitDamage/10;
                            CreateLoot(woodLoot, hitDamage/10);
-                       }
+                           if (hit.transform.GetComponent<wood>().Hp <= 0)
+                           {
+                               Destroy(hit.transform.parent.gameObject);
+                           }
+                        }
                        
 
                    }
@@ -479,11 +488,19 @@ public class PlayerMove : MonoBehaviour
                        {
                            hit.transform.GetComponent<Rock>().Hp -= hitDamage;
                            CreateLoot(rockLoot, hitDamage);
+                           if (hit.transform.GetComponent<Rock>().Hp <= 0)
+                           {
+                               Destroy(hit.transform.parent.gameObject);
+                           }
                         }
                        else
                        {
                            hit.transform.GetComponent<Rock>().Hp -= hitDamage/10;
                            CreateLoot(rockLoot, hitDamage/10);
+                           if (hit.transform.GetComponent<Rock>().Hp <= 0)
+                           {
+                               Destroy(hit.transform.parent.gameObject);
+                           }
                         }
                         
 

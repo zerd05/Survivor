@@ -163,6 +163,7 @@ MonoBehaviour:
   damage: 35
   maxBullets: 7
   bullets: 7
+  pistolNose: {fileID: 0}
 --- !u!1 &6992521614342926336
 GameObject:
   m_ObjectHideFlags: 0
@@ -2084,7 +2085,7 @@ GameObject:
   - component: {fileID: 6992521614342926763}
   m_Layer: 19
   m_Name: ArmyEnemy
-  m_TagString: Untagged
+  m_TagString: Army
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
