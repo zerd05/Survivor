@@ -91,7 +91,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Leaves Metalic"
 		void surf( Input i , inout SurfaceOutputStandard o )
 		{
 			float2 uv_MainTex = i.uv_texcoord * _MainTex_ST.xy + _MainTex_ST.zw;
-			o.Normal = UnpackScaleNormal( tex2D( _BumpMap, uv_MainTex ), _BumpScale );
+			o.Normal = UnpackScaleNormal( tex2D( _BumpMap, uv_MainTex ) ,_BumpScale );
 			float4 tex2DNode3 = tex2D( _MainTex, uv_MainTex );
 			float3 ase_worldPos = i.worldPos;
 			float2 appendResult226 = (float2(ase_worldPos.x , ase_worldPos.z));

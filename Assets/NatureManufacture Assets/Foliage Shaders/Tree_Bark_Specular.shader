@@ -79,7 +79,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Bark Specular"
 			#endif
 			float2 uv_DetailMask = i.uv_texcoord * _DetailMask_ST.xy + _DetailMask_ST.zw;
 			float4 tex2DNode25 = tex2D( _DetailMask, uv_DetailMask );
-			float3 lerpResult19 = lerp( UnpackScaleNormal( tex2D( _BumpMap, uv_MainTex ), _BumpScale ) , UnpackScaleNormal( tex2D( _DetailNormal, staticSwitch123 ), _DetailNormalMapScale ) , tex2DNode25.a);
+			float3 lerpResult19 = lerp( UnpackScaleNormal( tex2D( _BumpMap, uv_MainTex ) ,_BumpScale ) , UnpackScaleNormal( tex2D( _DetailNormal, staticSwitch123 ) ,_DetailNormalMapScale ) , tex2DNode25.a);
 			o.Normal = lerpResult19;
 			float4 lerpResult16 = lerp( tex2D( _MainTex, uv_MainTex ) , tex2D( _DetailAlbedoMap, staticSwitch123 ) , tex2DNode25.a);
 			o.Albedo = ( lerpResult16 * _Color ).rgb;

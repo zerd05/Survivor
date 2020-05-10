@@ -2,7 +2,7 @@ Shader "NatureManufacture Shaders/Trees/Cross Model Shader"
 {
 	Properties
 	{
-		_Cutoff( "Mask Clip Value", Float ) = 0.4
+		_Cutoff( "Mask Clip Value", Float ) = 0.65
 		_ColorAdjustment("Color Adjustment", Vector) = (1,1,1,0)
 		_MainTex("MainTex", 2D) = "white" {}
 		_HealthyColor("Healthy Color", Color) = (1,0.9735294,0.9338235,1)
@@ -45,12 +45,12 @@ Shader "NatureManufacture Shaders/Trees/Cross Model Shader"
 		uniform float3 _ColorAdjustment;
 		uniform float _Smooothness;
 		uniform float _AO;
-		uniform float _Cutoff = 0.4;
+		uniform float _Cutoff = 0.65;
 
 		void surf( Input i , inout SurfaceOutputStandardSpecular o )
 		{
 			float2 uv_MainTex = i.uv_texcoord * _MainTex_ST.xy + _MainTex_ST.zw;
-			o.Normal = UnpackScaleNormal( tex2D( _BumpMap, uv_MainTex ), _BumpScale );
+			o.Normal = UnpackScaleNormal( tex2D( _BumpMap, uv_MainTex ) ,_BumpScale );
 			float4 tex2DNode2 = tex2D( _MainTex, uv_MainTex );
 			o.Albedo = ( ( tex2DNode2 * _HealthyColor ) * float4( _ColorAdjustment , 0.0 ) ).rgb;
 			float3 temp_cast_2 = (0.0).xxx;

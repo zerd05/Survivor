@@ -2,7 +2,7 @@ Shader "NatureManufacture Shaders/Trees/Tree_Leaves_Specular"
 {
 	Properties
 	{
-		_Cutoff( "Mask Clip Value", Float ) = 0.57
+		_Cutoff( "Mask Clip Value", Float ) = 0.5
 		_MainTex("MainTex", 2D) = "white" {}
 		_HealthyColor("Healthy Color", Color) = (1,0.9735294,0.9338235,1)
 		_DryColor("Dry Color", Color) = (0.8676471,0.818369,0.6124567,1)
@@ -53,7 +53,7 @@ Shader "NatureManufacture Shaders/Trees/Tree_Leaves_Specular"
 		uniform sampler2D _AmbientOcclusionGSmoothnessA;
 		uniform float _SmoothnessPower;
 		uniform float _AmbientOcclusionPower;
-		uniform float _Cutoff = 0.57;
+		uniform float _Cutoff = 0.5;
 
 
 		float3 mod2D289( float3 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
@@ -90,7 +90,7 @@ Shader "NatureManufacture Shaders/Trees/Tree_Leaves_Specular"
 
 		void surf( Input i , inout SurfaceOutputStandardSpecular o )
 		{
-			float3 tex2DNode4 = UnpackScaleNormal( tex2D( _BumpMap, i.uv_texcoord ), _BumpScale );
+			float3 tex2DNode4 = UnpackScaleNormal( tex2D( _BumpMap, i.uv_texcoord ) ,_BumpScale );
 			o.Normal = tex2DNode4;
 			float4 tex2DNode3 = tex2D( _MainTex, i.uv_texcoord );
 			float3 ase_worldPos = i.worldPos;
