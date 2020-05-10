@@ -13,6 +13,7 @@ public class PlayerData
     public int rock;
     public bool havePistol;
     public bool haveKnife;
+    public int bulletsInPistol;
     public float[] position;
     public float[] rotation;
     public PlayerData(PlayerMove playerMove)
@@ -35,6 +36,14 @@ public class PlayerData
         rotation[1] = playerMove.transform.rotation.y;
         rotation[2] = playerMove.transform.rotation.z;
         rotation[3] = playerMove.transform.rotation.w;
+        if (havePistol)
+        {
+            bulletsInPistol = playerMove.GetComponentInChildren<PistolShoot>().bullets;
+        }
+        else
+        {
+            bulletsInPistol = 0;
+        }
     }
 
 

@@ -292,6 +292,7 @@ MonoBehaviour:
   WeaponMask:
     serializedVersion: 2
     m_Bits: 262144
+  hand: {fileID: 5674917131838880377}
   pistolPrefab: {fileID: 5625082241900824573, guid: 628eced9a76c0134b91679d039fb1134,
     type: 3}
   knifePrefab: {fileID: 6110104014498845649, guid: ec2503654e9c02541a0953666004b8d1,

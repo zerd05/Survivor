@@ -6,6 +6,11 @@ public class LoadGame : MonoBehaviour
 {
 
     public GameObject playerPrefab;
+    public GameObject pigPrefab;
+    public GameObject cowPrefab;
+    public GameObject chickenPrefab;
+    public GameObject armyPrefab;
+    public GameObject enemyPrefab;
     void Start()
     {
         //target = PlayerManager.instance.player.transform;
@@ -29,16 +34,64 @@ public class LoadGame : MonoBehaviour
             if (playerData.havePistol)
             {
                 player.GetComponent<TakeWeapons>().TakePistol();
+                player.GetComponentInChildren<PistolShoot>().bullets= playerData.bulletsInPistol;
             }
             if (playerData.haveKnife)
             {
                 player.GetComponent<TakeWeapons>().TakeKnife();
             }
-            print(position);
+
+
+            if (SaveSystem.LoadAi() != null)
+            {
+                List<AIData> aiData = SaveSystem.LoadAi();
+                foreach (var current in aiData)
+                {
+
+                    switch (current.type)
+                    {
+                        case "Enemy":
+                        {
+                            Instantiate(enemyPrefab, new Vector3(current.position[0],current.position[1],current.position[2]), Quaternion.identity);
+                            break;
+                        }
+                        case "Cow":
+                        {
+                            Instantiate(cowPrefab, new Vector3(current.position[0], current.position[1], current.position[2]), Quaternion.identity);
+
+                                break;
+                        }
+                        case "Chicken":
+                        {
+                            Instantiate(chickenPrefab, new Vector3(current.position[0], current.position[1], current.position[2]), Quaternion.identity);
+                                break;
+                        }
+                        case "Pig":
+                        {
+                            Instantiate(pigPrefab, new Vector3(current.position[0], current.position[1], current.position[2]), Quaternion.identity);
+                                break;
+                        }
+                        case "Army":
+                        {
+                            Instantiate(armyPrefab, new Vector3(current.position[0], current.position[1], current.position[2]), Quaternion.identity);
+                                break;
+                        }
+                    }
+                }
+            }
         }
         else
         {
-            
+            GameObject[] respawns = GameObject.FindGameObjectsWithTag("Respawn");
+
+            int selectedRespawn = Random.Range(0, respawns.Length);
+            Vector3 position = respawns[selectedRespawn].transform.position;
+            GameObject player = Instantiate(playerPrefab, position, Quaternion.identity);
+            PlayerMove playerMove = player.GetComponent<PlayerMove>();
+            playerMove.hp = 100;
+            playerMove.eat = Random.Range(80,100);
+            playerMove.water = Random.Range(80, 100);
+
         }
     }
 }

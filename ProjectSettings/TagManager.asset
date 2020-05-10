@@ -27,6 +27,7 @@ TagManager:
   - eatBar
   - woodText
   - ammoText
+  - Army
   layers:
   - Default
   - TransparentFX
