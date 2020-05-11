@@ -630,7 +630,6 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
 
-            SaveSystem.SavePlayer(this);
             RaycastHit hit;
             Physics.Raycast(transformCamera.position, transformCamera.forward, out hit, 1231f);
             Instantiate(enemy, hit.point, Quaternion.identity);

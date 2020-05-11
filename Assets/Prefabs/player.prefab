@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5674917129998596425}
   - component: {fileID: 5674917129998596424}
   - component: {fileID: 5674917129998596439}
+  - component: {fileID: 6300173306157970423}
   m_Layer: 13
   m_Name: player
   m_TagString: Player
@@ -314,6 +315,38 @@ MonoBehaviour:
   Delay: 1
   MaximumStress: 0.16
   Range: 45
+--- !u!114 &6300173306157970423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5674917129998596430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae26a580f0dceab45ab5171a03f5d5fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDistance: 250
+  maxDistance: 500
+  armyPrefab: {fileID: 6992521614342926724, guid: fc89b6553b024144cb1b4cbc1422652b,
+    type: 3}
+  zombiePrefab: {fileID: 7988914108842985162, guid: ac0a9ec2c3019fa4d8b5d6e3b889aac7,
+    type: 3}
+  pigPrefab: {fileID: 1806121918601262846, guid: 610601e33d2c6074686e9f384d1e8b57,
+    type: 3}
+  cowPrefab: {fileID: 6817524744045739631, guid: eea5ab5abe9552f4ca677a89daebd860,
+    type: 3}
+  chickenPrefab: {fileID: 1442831839943111078, guid: dafb362a03f507541a8217801543a92f,
+    type: 3}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 512
+  armyCount: 20
+  zombieCount: 20
+  pigCount: 20
+  cowCount: 20
+  chickenCount: 20
 --- !u!1 &5674917130297308247
 GameObject:
   m_ObjectHideFlags: 0

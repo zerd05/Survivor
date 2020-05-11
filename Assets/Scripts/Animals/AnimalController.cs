@@ -47,7 +47,27 @@ public class AnimalController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         wanderPoint = RandomWanderPoint();
         timeToChange = Time.time;
+        switch (PlayerPrefs.GetInt("Difficulty", 2))
+        {
+            case 1:
+            {
+                Health = 100;
+                break;
+            }
+            case 2:
+            {
+                Health = 150;
+                break;
+            }
+            case 3:
+            {
+                Health = 200;
+                break;
+            }
+        }
 
+        if (!agent.SetDestination(transform.position))
+            Destroy(gameObject);
     }
     public void PlaySound(AudioClip sound)
     {
