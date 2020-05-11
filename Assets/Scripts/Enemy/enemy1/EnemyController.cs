@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour
 
 
     public int Health = 23123;
-
+    public int attackDamage = 10;
 
     private float lookRadius = 11f;
 
@@ -44,6 +44,32 @@ public class EnemyController : MonoBehaviour
       //  target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         wanderPoint = RandomWanderPoint();
+
+
+        switch (PlayerPrefs.GetInt("Difficulty", 2))
+        {
+            case 1:
+            {
+                Health = 50;
+                attackDamage = 5;
+                break;
+            }
+            case 2:
+            {
+                Health = 100;
+                attackDamage = 25;
+                break;
+            }
+            case 3:
+            {
+                Health = 120;
+                attackDamage = 40;
+                break;
+            }
+        }
+
+        if (!agent.SetDestination(transform.position))
+            Destroy(gameObject);
 
     }
 

@@ -52,7 +52,52 @@ public class ArmyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         wanderPoint = RandomWanderPoint();
 
+        switch (PlayerPrefs.GetInt("Difficulty", 2))
+        {
+            case 1:
+            {
+                Health = 70;
+                shootDamage = 15;
+                hitChance = 50;
+                break;
+            }
+            case 2:
+            {
+                Health = 100;
+                shootDamage = 25;
+                hitChance = 70;
+                break;
+            }
+            case 3:
+            {
+                Health = 120;
+                shootDamage = 40;
+                hitChance = 90;
+                break;
+            }
+        }
+
+        if (!agent.SetDestination(transform.position))
+            Destroy(gameObject);
+
     }
+
+    bool RandomPoint(Vector3 center, float range, out Vector3 result)
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            Vector3 randomPoint = center + Random.insideUnitSphere * range;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            {
+                result = hit.position;
+                return true;
+            }
+        }
+        result = Vector3.zero;
+        return false;
+    }
+
     public void PlaySound(AudioClip sound)
     {
         SoundSysyem soundSysyem = new SoundSysyem();
@@ -211,7 +256,11 @@ public class ArmyController : MonoBehaviour
         }
         else
         {
-            agent.SetDestination(wanderPoint);
+           
+                agent.SetDestination(wanderPoint);
+                
+       
+            
         }
 
 
