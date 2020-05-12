@@ -13,13 +13,16 @@ public class InGameMenu : MonoBehaviour
     public GameObject GameText;
     public GameObject loadButton;
 
+    public GameObject deadMenu;
+    public GameObject deadLoadButton;
+
     void Start()
     {
         Resume();
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && LoadInfo.isAlive)
         {
             if (IsPaused)
             {
@@ -30,8 +33,23 @@ public class InGameMenu : MonoBehaviour
                 Pause();
             }
         }
+
+        if (!LoadInfo.isAlive)
+        {
+            Resume();
+            Time.timeScale = 0f;
+            deadMenu.SetActive(true);
+            if (SaveSystem.LoadPlayer() != null)
+                deadLoadButton.GetComponent<Button>().interactable = true;
+            else
+                deadLoadButton.GetComponent<Button>().interactable = false;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
     
+
+
     
     public void Resume()
     {
@@ -51,7 +69,7 @@ public class InGameMenu : MonoBehaviour
     public void Pause()
     {
         pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
+       //Time.timeScale = 0f;
         IsPaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -72,6 +90,7 @@ public class InGameMenu : MonoBehaviour
 
     public void ExitToMenuButton()
     {
+        
         SceneManager.LoadScene("Assets/SlimUI/Modern Menu 1/Scenes/Menu_Scene_Original.unity", LoadSceneMode.Single);
         Time.timeScale = 1f;
     }

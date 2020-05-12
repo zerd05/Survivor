@@ -6,7 +6,8 @@ public class AiSpawner : MonoBehaviour
 {
     //private Transform target;
     public float minDistance;
-    public float maxDistance;
+    
+    public float  maxDistance;
     public GameObject armyPrefab;
     public GameObject zombiePrefab;
     public GameObject pigPrefab;
@@ -27,7 +28,7 @@ public class AiSpawner : MonoBehaviour
 
         
 
-        InvokeRepeating("SpawnEnemy",3f,2f);
+        InvokeRepeating("SpawnEnemy",1f,0.5f);
         
 
 
@@ -50,7 +51,8 @@ public class AiSpawner : MonoBehaviour
             if (Vector3.Distance(transform.position, ray.point) < minDistance)
                 return;
 
-            Instantiate(armyPrefab, ray.point, Quaternion.identity).name = name;
+            Instantiate(armyPrefab, ray.point, Quaternion.identity);
+           
            
         }
         if (GameObject.FindObjectsOfType<ArmyController>().Length < zombieCount)
@@ -65,7 +67,7 @@ public class AiSpawner : MonoBehaviour
             if (Vector3.Distance(transform.position, ray.point) < minDistance)
                 return;
 
-            Instantiate(zombiePrefab, ray.point, Quaternion.identity).name = name;
+            Instantiate(zombiePrefab, ray.point, Quaternion.identity);
             
         }
         if (GameObject.FindObjectsOfType<ArmyController>().Length < cowCount)
@@ -80,7 +82,7 @@ public class AiSpawner : MonoBehaviour
             if (Vector3.Distance(transform.position, ray.point) < minDistance)
                 return;
 
-            Instantiate(cowPrefab, ray.point, Quaternion.identity).name = name;
+            Instantiate(cowPrefab, ray.point, Quaternion.identity);
            
         }
         if (GameObject.FindObjectsOfType<ArmyController>().Length < pigCount)
@@ -95,7 +97,7 @@ public class AiSpawner : MonoBehaviour
             if (Vector3.Distance(transform.position, ray.point) < minDistance)
                 return;
 
-            Instantiate(pigPrefab, ray.point, Quaternion.identity).name = name;
+            Instantiate(pigPrefab, ray.point, Quaternion.identity);
           
         }
         if (GameObject.FindObjectsOfType<ArmyController>().Length < chickenCount)
@@ -110,7 +112,7 @@ public class AiSpawner : MonoBehaviour
             if (Vector3.Distance(transform.position, ray.point) < minDistance)
                 return;
 
-            Instantiate(chickenPrefab, ray.point, Quaternion.identity).name = name;
+            Instantiate(chickenPrefab, ray.point, Quaternion.identity);
            
         }
 

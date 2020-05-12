@@ -108,7 +108,9 @@ public class AnimalController : MonoBehaviour
                 GetComponent<BoxCollider>().enabled = true;
                 GetComponent<CapsuleCollider>().enabled = false;
             }
+            Destroy(gameObject, 200f);
             return;
+        
         }
     }
 
@@ -132,6 +134,11 @@ public class AnimalController : MonoBehaviour
 
         if (deadHealth<=0)
             Destroy(gameObject);
+        float foobar = target.GetComponent<AiSpawner>().maxDistance;
+        if (Vector3.Distance(transform.position, target.position) > foobar)
+        {
+            Destroy(gameObject);
+        }
 
 
 
@@ -180,7 +187,7 @@ public class AnimalController : MonoBehaviour
         {
             wanderPoint = RandomWanderPoint();
         }
-        else if (timeToChange < currentTime - 5f)
+        else if (timeToChange < currentTime - 15f)
         {
             timeToChange = Time.time;
             wanderPoint = RandomWanderPoint();

@@ -322,15 +322,16 @@ public class PlayerMove : MonoBehaviour
          if (hp <= 0) //смерть
          {
              hp = 0;
-             GameObject a = GameObject.FindGameObjectWithTag("arms");
-             a.SetActive(false);
-            woodText.text = "Дерево: " + woodCount.ToString() + "\nЗдоровье: " + hp.ToString();
-            woodText.text = "\n\n\n\n\nПерсонаж погиб";
-            GetComponent<PlayerMove>().enabled = false;
-            GetComponent<CharacterController>().enabled = false;
-            gameObject.AddComponent<Rigidbody>().AddForce(new Vector3(500f,50f,500f));
-            GetComponent<Rigidbody>().mass += 300;
-            GetComponent<MouseLock>().enabled = false;
+            // GameObject a = GameObject.FindGameObjectWithTag("arms");
+            // a.SetActive(false);
+            //woodText.text = "Дерево: " + woodCount.ToString() + "\nЗдоровье: " + hp.ToString();
+            //woodText.text = "\n\n\n\n\nПерсонаж погиб";
+            //GetComponent<PlayerMove>().enabled = false;
+            //GetComponent<CharacterController>().enabled = false;
+            //gameObject.AddComponent<Rigidbody>().AddForce(new Vector3(500f,50f,500f));
+            //GetComponent<Rigidbody>().mass += 300;
+            //GetComponent<MouseLock>().enabled = false;
+            LoadInfo.isAlive = false;
 
          }
 
@@ -388,7 +389,7 @@ public class PlayerMove : MonoBehaviour
                if (weaponSwitch.weapon.GetComponent<PistolShoot>().CanShot())
                {
                    
-                   //print("Можно стрелять");
+                  
 
                    animator.Play("Shot");
 

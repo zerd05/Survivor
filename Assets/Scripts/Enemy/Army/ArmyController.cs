@@ -51,7 +51,7 @@ public class ArmyController : MonoBehaviour
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         wanderPoint = RandomWanderPoint();
-
+        prevDistance = transform.position;
         switch (PlayerPrefs.GetInt("Difficulty", 2))
         {
             case 1:
@@ -77,6 +77,7 @@ public class ArmyController : MonoBehaviour
             }
         }
 
+        timeToDelete = Time.time;
         if (!agent.SetDestination(transform.position))
             Destroy(gameObject);
 
@@ -132,10 +133,38 @@ public class ArmyController : MonoBehaviour
     }
 
     private bool deadThings = false;
+    private float timeToDelete = 0;
+    private Vector3 prevDistance;
     void Update()
     {
       if(deadHealth<=0)
           Destroy(gameObject);
+      float foobar = target.GetComponent<AiSpawner>().maxDistance;
+      if (Vector3.Distance(transform.position, target.position) > foobar)
+      {
+          Destroy(gameObject);
+          print("Army уничтожен слишком далеко");
+      }
+
+        float currentTime = Time.time;
+      if (timeToDelete < currentTime - 15f)
+      {
+          if (Vector3.Distance(prevDistance, transform.position) < 1f)
+          {
+              Destroy(gameObject);
+              print("Army уничтожен стоит на месте");
+            }
+          else
+          {
+              timeToDelete = Time.time;
+              prevDistance = transform.position;
+          }
+
+          
+
+
+
+      }
 
         animator.SetBool("Run",true);
         if (Health <= 0)
@@ -160,6 +189,8 @@ public class ArmyController : MonoBehaviour
                 Destroy(GetComponent<Rigidbody>());
                 GetComponent<CapsuleCollider>().enabled = false;
                 Destroy(agent);
+                Destroy(gameObject, 200f);
+                print("Army уничтожен умер");
                 deadThings = true;
                 return;
             }
@@ -250,7 +281,7 @@ public class ArmyController : MonoBehaviour
     {
 
 
-        if (Vector3.Distance(transform.position, wanderPoint) < 10f)
+        if (Vector3.Distance(transform.position, wanderPoint) < 20f)
         {
             wanderPoint = RandomWanderPoint();
         }
