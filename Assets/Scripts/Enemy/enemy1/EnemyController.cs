@@ -45,7 +45,7 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         wanderPoint = RandomWanderPoint();
 
-
+        prevDistance = transform.position;
         switch (PlayerPrefs.GetInt("Difficulty", 2))
         {
             case 1:
@@ -68,6 +68,8 @@ public class EnemyController : MonoBehaviour
             }
         }
 
+        timeToDelete = Time.time;
+        
         if (!agent.SetDestination(transform.position))
             Destroy(gameObject);
 
@@ -110,6 +112,8 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    private float timeToDelete = 0f;
+    private Vector3 prevDistance;
     void Update()
     {
         if (target == null)
@@ -119,6 +123,29 @@ public class EnemyController : MonoBehaviour
             return;
         }
         animator.SetInteger("Health",Health);
+        float foobar = target.GetComponent<AiSpawner>().maxDistance;
+        if (Vector3.Distance(transform.position, target.position) > foobar)
+        {
+            Destroy(gameObject);
+        }
+        float currentTime = Time.time;
+        if (timeToDelete < currentTime - 20f)
+        {
+            if (Vector3.Distance(prevDistance, transform.position) < 1f)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                timeToDelete = Time.time;
+                prevDistance = transform.position;
+            }
+
+
+
+
+
+        }
 
         if (Health <= 0)
         {
@@ -150,6 +177,7 @@ public class EnemyController : MonoBehaviour
             enabled = false;
             Destroy(GetComponent<Rigidbody>());
             GetComponent<CapsuleCollider>().enabled = false;
+            Destroy(gameObject, 30f);
             return;
 
         }
@@ -212,14 +240,20 @@ public class EnemyController : MonoBehaviour
 
 
   
-
+    private float timeToChange = 0;
     public void Wander()
     {
 
-     
-            if (Vector3.Distance(transform.position, wanderPoint) < 10f)
+        float currentTime = Time.time;
+        if (Vector3.Distance(transform.position, wanderPoint) < 10f)
             {
                 wanderPoint = RandomWanderPoint();
+            }
+            else if (timeToChange < currentTime - 15f)
+            {
+                timeToChange = Time.time;
+                wanderPoint = RandomWanderPoint();
+
             }
             else
             {

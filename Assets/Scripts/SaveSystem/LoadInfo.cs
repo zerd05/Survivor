@@ -5,5 +5,6 @@ using UnityEngine;
 public static class LoadInfo
 {
     public static bool isLoadGame = false;
+    public static bool isAlive = true;
 
 }

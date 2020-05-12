@@ -2200,8 +2200,8 @@ MonoBehaviour:
   animator: {fileID: 6992521614352433740}
   stoppingDistance: 23.8
   wanderRadius: 38.64
-  wanderSpeed: 4
-  findPlayerSpeed: 2
+  wanderSpeed: 1.42
+  findPlayerSpeed: 3.81
   standartLookRadius: 27.8
   hitAudioClip: {fileID: 8300000, guid: ab89ea12dd12cdc43b04a0529025fed8, type: 3}
 --- !u!54 &6992521614342926763

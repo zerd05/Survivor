@@ -41,6 +41,7 @@ public class LoadGame : MonoBehaviour
                 player.GetComponent<TakeWeapons>().TakeKnife();
             }
 
+            LoadInfo.isAlive = true;
 
             if (SaveSystem.LoadAi() != null)
             {
@@ -91,7 +92,7 @@ public class LoadGame : MonoBehaviour
             playerMove.hp = 100;
             playerMove.eat = Random.Range(80,100);
             playerMove.water = Random.Range(80, 100);
-
+            LoadInfo.isAlive = true;
         }
     }
 }

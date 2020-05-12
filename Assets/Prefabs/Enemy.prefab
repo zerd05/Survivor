@@ -101,10 +101,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 124
+  attackDamage: 10
   animator: {fileID: 7988914108842985164}
   wanderRadius: 35.5
-  wanderSpeed: 1.36
-  findPlayerSpeed: 6.76
+  wanderSpeed: 0.4
+  findPlayerSpeed: 8.06
   hitRate: 0.34
   standartLookRadius: 11.79
   hitAudioClips:
