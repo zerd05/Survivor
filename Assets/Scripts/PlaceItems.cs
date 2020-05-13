@@ -12,7 +12,7 @@ public class PlaceItems : MonoBehaviour
     public GameObject prev;
     private Transform player;
     private PlayerMove playerMove;
-
+    private bool drawGUI;
     private bool canPlace = true;
     // Update is called once per frame
 
@@ -49,10 +49,11 @@ public class PlaceItems : MonoBehaviour
             canPlace = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (isPlacing)
             {
+                drawGUI = false;
                 isPlacing = false;
                 Destroy(prev);
             }
@@ -74,15 +75,18 @@ public class PlaceItems : MonoBehaviour
 
             if (playerMove.woodCount > 1100 && playerMove.rockCount > 400 && canPlace)
             {
+                drawGUI = true;
                 prev = Instantiate(campFirePreviewGreen, hit.point + new Vector3(0, 0.1f), Quaternion.identity);
             }
             else
             {
+                drawGUI = false;
                 prev = Instantiate(campFirePreviewRed, hit.point + new Vector3(0, 0.1f), Quaternion.identity);
 
             }
             if (Vector3.Distance(hit.point, player.transform.position) > 5f)
             {
+                drawGUI = false;
                 isPlacing = false;
                 Destroy(prev);
             }
@@ -96,6 +100,7 @@ public class PlaceItems : MonoBehaviour
                 if (isPlacing)
                 {
                     isPlacing = false;
+                    drawGUI = false;
                     player = PlayerManager.instance.player;
 
                     playerCamera = PlayerManager.instance.player.GetComponentInChildren<Camera>();
@@ -107,5 +112,10 @@ public class PlaceItems : MonoBehaviour
                     playerMove.rockCount -= 400;
                 }
         }
+    }
+    private void OnGUI()
+    {
+        if (drawGUI)
+            GUI.Box(new Rect(Screen.width * 0.5f - 250 / 2, Screen.height * 0.5f + 22, 250, 22), "Нажмите Е чтобы поставить");
     }
 }

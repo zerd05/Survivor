@@ -88,8 +88,8 @@ namespace SlimUI.ModernMenu{
 			if(extrasMenu) extrasMenu.SetActive(false);
 			firstMenu.SetActive(true);
 			mainMenu.SetActive(true);
-
-		}
+            Time.timeScale = 1f;
+        }
 
 		void Update(){
 			SetThemeColors();

@@ -91,6 +91,6 @@ public class TakeWeapons : MonoBehaviour
     private void OnGUI()
     {
         if (drawGUI)
-            GUI.Box(new Rect(Screen.width * 0.5f - 51, Screen.height * 0.5f + 22, 102, 22), "Нажмите Е чтобы подобрать");
+            GUI.Box(new Rect(Screen.width * 0.5f - 250 / 2, Screen.height * 0.5f + 22, 250, 22), "Нажмите Е чтобы подобрать");
     }
 }

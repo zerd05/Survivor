@@ -69,7 +69,7 @@ public class EnemyController : MonoBehaviour
         }
 
         timeToDelete = Time.time;
-        
+
         if (!agent.SetDestination(transform.position))
             Destroy(gameObject);
 
@@ -133,7 +133,8 @@ public class EnemyController : MonoBehaviour
         {
             if (Vector3.Distance(prevDistance, transform.position) < 1f)
             {
-                Destroy(gameObject);
+                if(Health>0)
+                    Destroy(gameObject);
             }
             else
             {
@@ -177,7 +178,9 @@ public class EnemyController : MonoBehaviour
             enabled = false;
             Destroy(GetComponent<Rigidbody>());
             GetComponent<CapsuleCollider>().enabled = false;
+            GetComponent<AudioSource>().enabled = false;
             Destroy(gameObject, 30f);
+
             return;
 
         }

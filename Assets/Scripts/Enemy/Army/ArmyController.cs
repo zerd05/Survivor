@@ -139,20 +139,16 @@ public class ArmyController : MonoBehaviour
     {
       if(deadHealth<=0)
           Destroy(gameObject);
-      float foobar = target.GetComponent<AiSpawner>().maxDistance;
-      if (Vector3.Distance(transform.position, target.position) > foobar)
-      {
-          Destroy(gameObject);
-          print("Army уничтожен слишком далеко");
-      }
+      
 
         float currentTime = Time.time;
       if (timeToDelete < currentTime - 15f)
       {
           if (Vector3.Distance(prevDistance, transform.position) < 1f)
           {
-              Destroy(gameObject);
-              print("Army уничтожен стоит на месте");
+              if (Health > 0)
+                  Destroy(gameObject);
+             
             }
           else
           {
@@ -190,7 +186,7 @@ public class ArmyController : MonoBehaviour
                 GetComponent<CapsuleCollider>().enabled = false;
                 Destroy(agent);
                 Destroy(gameObject, 200f);
-                print("Army уничтожен умер");
+               
                 deadThings = true;
                 return;
             }
@@ -256,6 +252,12 @@ public class ArmyController : MonoBehaviour
                 //animator.SetBool("Walk", true);
                 Wander();
                 // agent.speed = wanderSpeed;
+            }
+            float foobar = target.GetComponent<AiSpawner>().maxDistance;
+            if (Vector3.Distance(transform.position, target.position) > foobar)
+            {
+                Destroy(gameObject);
+
             }
     }
 
