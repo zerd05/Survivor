@@ -69,7 +69,7 @@ public class InGameMenu : MonoBehaviour
     public void Pause()
     {
         pauseMenu.SetActive(true);
-       //Time.timeScale = 0f;
+       Time.timeScale = 0f;
         IsPaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -85,13 +85,15 @@ public class InGameMenu : MonoBehaviour
     public void LoadGameButton()
     {
         LoadInfo.isLoadGame = true;
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Assets/Scenes/SampleScene.unity");
+        
     }
 
     public void ExitToMenuButton()
     {
-        
-        SceneManager.LoadScene("Assets/SlimUI/Modern Menu 1/Scenes/Menu_Scene_Original.unity", LoadSceneMode.Single);
         Time.timeScale = 1f;
+        SceneManager.LoadScene("Assets/SlimUI/Modern Menu 1/Scenes/Menu_Scene_Original.unity", LoadSceneMode.Single);
+        
     }
 }

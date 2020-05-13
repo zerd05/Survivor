@@ -207,6 +207,35 @@ public class PlayerMove : MonoBehaviour
         if (ray.transform != null)
         {
             drawGUI = true;
+            if (ray.transform.tag == "Magazine")
+            {
+
+                textGui = "Нажмите E чтобы взять";
+            }
+            if (ray.transform.tag == "Rock")
+            {
+                textGui = "Нажмите E чтобы взять";
+            }
+            if (ray.transform.tag == "Wood")
+            {
+                textGui = "Нажмите E чтобы взять";
+
+            }
+            if (ray.transform.tag == "Food")
+            {
+                textGui = "Нажмите E чтобы съесть";
+            }
+            if (ray.transform.tag == "Water")
+            {
+                textGui = "Нажмите E чтобы выпить";
+
+            }
+            if (ray.transform.tag == "WaterBig")
+            {
+
+                textGui = "Нажмите E чтобы выпить";
+            }
+
             if (Input.GetKeyDown(KeyCode.E))
             {
 
@@ -214,16 +243,19 @@ public class PlayerMove : MonoBehaviour
                 {
                     bulletCount += 14;
                     PlaySound(takePistol);
+                    textGui = "Нажмите E чтобы выпить";
                 }
                 if (ray.transform.tag == "Rock")
                 {
                     rockCount += ray.transform.GetComponent<Loot>().count;
                     PlaySound(takeItem);
+                   
                 }
                 if (ray.transform.tag == "Wood")
                 {
                     woodCount += ray.transform.GetComponent<Loot>().count;
                     PlaySound(takeItem);
+                  
                 }
                 if (ray.transform.tag == "Food")
                 {
@@ -231,6 +263,7 @@ public class PlayerMove : MonoBehaviour
                     if (eat > 100)
                         eat = 100;
                     PlaySound(eatFood);
+                  
                 }
                 if (ray.transform.tag == "Water")
                 {
@@ -238,6 +271,7 @@ public class PlayerMove : MonoBehaviour
                     if (water > 100)
                         water = 100;
                     PlaySound(drinkSound);
+                  
                 }
                 if (ray.transform.tag == "WaterBig")
                 {
@@ -245,6 +279,7 @@ public class PlayerMove : MonoBehaviour
                     if (water > 100)
                         water = 100;
                     PlaySound(drinkSound);
+                    
                 }
 
                 if (ray.transform.tag != "WaterBig")
@@ -259,7 +294,7 @@ public class PlayerMove : MonoBehaviour
 
 
 
-        GameObject.FindGameObjectWithTag("woodText").GetComponent<Text>().text = "Дерево: " + woodCount.ToString()+"\nКамень: "+rockCount.ToString()  +"\nЗагружено: "+LoadInfo.isLoadGame.ToString();
+        GameObject.FindGameObjectWithTag("woodText").GetComponent<Text>().text = "Дерево: " + woodCount.ToString()+"\nКамень: "+rockCount.ToString();
         if (weaponSwitch.weapon.name == "Pistol")
         {
             GameObject.FindGameObjectWithTag("ammoText").GetComponent<Text>().text = weaponSwitch.weapon.GetComponent<PistolShoot>().bullets+"/"+bulletCount;
@@ -699,10 +734,12 @@ public class PlayerMove : MonoBehaviour
         Instantiate(item, hit.point, Quaternion.identity);
 
     }
+
+    public string textGui;
     private void OnGUI()
     {
         if (drawGUI)
-            GUI.Box(new Rect(Screen.width*0.5f - 51, Screen.height*0.5f + 22, 102, 22), "Нажмите Е чтобы подобрать");
+            GUI.Box(new Rect(Screen.width*0.5f - 250/2, Screen.height*0.5f + 22, 250, 22), textGui);
     }
     public void UpdateBars()
     {

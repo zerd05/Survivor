@@ -54,8 +54,8 @@ CharacterController:
   serializedVersion: 2
   m_Height: 1.35
   m_Radius: 0.14
-  m_SlopeLimit: 45
-  m_StepOffset: 0
+  m_SlopeLimit: 40
+  m_StepOffset: 0.16
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -120,9 +120,9 @@ MonoBehaviour:
   enableFallDamage: 1
   fallDamageMultiplayer: 2.5
   eatLootPerHit: 15
-  woodCount: 1272
-  bulletCount: 45
-  rockCount: 708
+  woodCount: 0
+  bulletCount: 0
+  rockCount: 0
   hp: 500019.62
   eat: 9.9
   water: 100
@@ -163,6 +163,7 @@ MonoBehaviour:
   enemy: {fileID: 6992521614342926724, guid: fc89b6553b024144cb1b4cbc1422652b, type: 3}
   havePistol: 0
   haveKnife: 0
+  textGui: 
 --- !u!82 &5674917129998596426
 AudioSource:
   m_ObjectHideFlags: 0

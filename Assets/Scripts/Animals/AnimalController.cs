@@ -66,8 +66,8 @@ public class AnimalController : MonoBehaviour
             }
         }
 
-        if (!agent.SetDestination(transform.position))
-            Destroy(gameObject);
+      //  if (!agent.SetDestination(transform.position))
+         //   Destroy(gameObject);
     }
     public void PlaySound(AudioClip sound)
     {
@@ -167,9 +167,9 @@ public class AnimalController : MonoBehaviour
          if (Health <= 0)
          {
              agent.enabled = false;
-             
-             
-            
+             GetComponent<AudioSource>().enabled = false;
+
+
          }
     }
 
