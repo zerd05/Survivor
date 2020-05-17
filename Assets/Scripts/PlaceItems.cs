@@ -14,7 +14,7 @@ public class PlaceItems : MonoBehaviour
     private PlayerMove playerMove;
     private bool drawGUI;
     private bool canPlace = true;
-    // Update is called once per frame
+
 
     void Start()
     {
