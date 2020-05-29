@@ -114,9 +114,8 @@ public class PlayerMove : MonoBehaviour
 
 
     public Vector3 punch = new Vector3(0, 0);
-    [Space]
-    [Space]
-    [Header("Debug")]
+    [Space] [Space] [Header("Debug")]
+    public bool debug;
     public GameObject enemy;
 
     private bool isCampFireActive;
@@ -158,13 +157,13 @@ public class PlayerMove : MonoBehaviour
         //Система еды
         if (eat < 0)
             eat = 0;
-        eat -= 0.001f;
+        eat -= 0.005f;
         if (water < 0)
                 water = 0;
         water -= 0.01f;
         if (Input.GetAxis("Sprint") > 0 && isGrounded)
         {
-            eat -= 0.001f;
+            eat -= 0.003f;
             water -= 0.01f;
         }
         
@@ -494,8 +493,8 @@ public class PlayerMove : MonoBehaviour
                        print("Wood hit");
                        if (weaponSwitch.weapon.name == "Axe")
                        {
-                           hit.transform.GetComponent<wood>().Hp -= hitDamage;
-                           CreateLoot(woodLoot, hitDamage);
+                           hit.transform.GetComponent<wood>().Hp -= hitDamage*4;
+                           CreateLoot(woodLoot, hitDamage*4);
                            if (hit.transform.GetComponent<wood>().Hp <= 0)
                            {
                                Destroy(hit.transform.parent.gameObject);
@@ -522,8 +521,8 @@ public class PlayerMove : MonoBehaviour
 
                        if (weaponSwitch.weapon.name == "Pickaxe")
                        {
-                           hit.transform.GetComponent<Rock>().Hp -= hitDamage;
-                           CreateLoot(rockLoot, hitDamage);
+                           hit.transform.GetComponent<Rock>().Hp -= hitDamage*4;
+                           CreateLoot(rockLoot, hitDamage*4);
                            if (hit.transform.GetComponent<Rock>().Hp <= 0)
                            {
                                Destroy(hit.transform.parent.gameObject);
@@ -582,24 +581,24 @@ public class PlayerMove : MonoBehaviour
                    if (MeleeHit(transformCamera, meleeDistance, animalMask, out hit))
                    {
                        PlaySound(woodHit);
-                        hit.transform.GetComponent<AnimalController>().MakeDamage(hitDamage / 4);
+                        hit.transform.GetComponent<AnimalController>().MakeDamage(hitDamage);
                    }
                     else if (MeleeHit(transformCamera, meleeDistance, enemyMask, out hit))
                    {
                        PlaySound(woodHit);
-                        hit.transform.GetComponent<EnemyController>().MakeDamage(hitDamage/4);
+                        hit.transform.GetComponent<EnemyController>().MakeDamage(hitDamage);
                    }
                     else if (MeleeHit(transformCamera, meleeDistance, armyMask, out hit))
                     {
                         PlaySound(woodHit);
-                        hit.transform.GetComponent<ArmyController>().MakeDamage(hitDamage / 4);
+                        hit.transform.GetComponent<ArmyController>().MakeDamage(hitDamage);
 
                     }
                    else if (MeleeHit(transformCamera, meleeDistance, armyLootMask, out hit))
                    {
                        PlaySound(woodHit);
 
-                        hit.transform.GetComponent<ColiderArmy>().MakeDamage(hitDamage / 4);
+                        hit.transform.GetComponent<ColiderArmy>().MakeDamage(hitDamage);
                        print(weaponSwitch.maxWeapons);
                        int rand = Random.Range(1, 6);
                        
@@ -663,25 +662,16 @@ public class PlayerMove : MonoBehaviour
           
 
         }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-
-            RaycastHit hit;
-            Physics.Raycast(transformCamera.position, transformCamera.forward, out hit, 1231f);
-            Instantiate(enemy, hit.point, Quaternion.identity);
-            // animator.Play("Lhit");
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            foreach(var a in GameObject.FindGameObjectsWithTag("Enemy"))
+        if(debug)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                Destroy(a);
+
+                RaycastHit hit;
+                Physics.Raycast(transformCamera.position, transformCamera.forward, out hit, 1231f);
+                Instantiate(enemy, hit.point, Quaternion.identity);
+                // animator.Play("Lhit");
             }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            
-        }
+
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);

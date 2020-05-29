@@ -115,7 +115,7 @@ MonoBehaviour:
   waterLayer:
     serializedVersion: 2
     m_Bits: 16
-  hitDamage: 203
+  hitDamage: 20
   fallWithoutDamage: 10
   enableFallDamage: 1
   fallDamageMultiplayer: 2.5
@@ -160,6 +160,7 @@ MonoBehaviour:
   bulletEffect: {fileID: 100006, guid: 30b4cc2728d8cec499fad63ba93785a4, type: 3}
   TraumaInducer: {fileID: 5674917129998596439}
   punch: {x: 0, y: 0, z: 0}
+  debug: 0
   enemy: {fileID: 6992521614342926724, guid: fc89b6553b024144cb1b4cbc1422652b, type: 3}
   havePistol: 0
   haveKnife: 0
@@ -328,7 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae26a580f0dceab45ab5171a03f5d5fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 250
+  minDistance: 118
   maxDistance: 401.1
   armyPrefab: {fileID: 6992521614342926724, guid: fc89b6553b024144cb1b4cbc1422652b,
     type: 3}

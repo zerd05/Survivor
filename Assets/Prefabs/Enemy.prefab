@@ -101,14 +101,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f9b3c063168baa4d89d3b78624efe33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 124
+  Health: 300
   attackDamage: 10
   animator: {fileID: 7988914108842985164}
   wanderRadius: 35.5
   wanderSpeed: 0.4
   findPlayerSpeed: 8.06
   hitRate: 0.34
-  standartLookRadius: 43.6
+  standartLookRadius: 65.7
   hitAudioClips:
   - {fileID: 8300000, guid: 5cd921b91deac4f47b05c451951f7a53, type: 3}
   - {fileID: 8300000, guid: a4366158371c9514cae30cfff454dcb2, type: 3}

@@ -80,7 +80,7 @@ public class ArmyController : MonoBehaviour
         timeToDelete = Time.time;
         if (!agent.SetDestination(transform.position))
             Destroy(gameObject);
-
+        lookRadius = standartLookRadius;
     }
 
     bool RandomPoint(Vector3 center, float range, out Vector3 result)

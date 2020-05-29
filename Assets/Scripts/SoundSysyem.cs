@@ -31,7 +31,7 @@ public class SoundSysyem : MonoBehaviour
         soundObject.GetComponent<AudioSource>().playOnAwake = false;
         soundObject.GetComponent<AudioSource>().rolloffMode = AudioRolloffMode.Linear;
         soundObject.GetComponent<AudioSource>().minDistance = 1;
-        soundObject.GetComponent<AudioSource>().maxDistance = 40;
+        soundObject.GetComponent<AudioSource>().maxDistance = 60;
         soundObject.GetComponent<AudioSource>().spatialBlend = 1f;
         soundObject.GetComponent<AudioSource>().Play();
         soundObject.AddComponent<AutoRemove>().lifeTime = lifeTime;
