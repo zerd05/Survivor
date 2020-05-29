@@ -72,7 +72,7 @@ public class EnemyController : MonoBehaviour
 
         if (!agent.SetDestination(transform.position))
             Destroy(gameObject);
-
+        lookRadius = standartLookRadius;
     }
 
 
