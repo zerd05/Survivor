@@ -115,7 +115,7 @@ MonoBehaviour:
   waterLayer:
     serializedVersion: 2
     m_Bits: 16
-  hitDamage: 20
+  hitDamage: 35
   fallWithoutDamage: 10
   enableFallDamage: 1
   fallDamageMultiplayer: 2.5
